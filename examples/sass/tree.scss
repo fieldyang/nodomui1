@@ -1,0 +1,75 @@
+// @use 'sass:math';
+@import "base";
+/********** tree ***********/
+.nd-tree {
+	@extend .nd-commonbox;
+	overflow: auto;
+	.nd-tree-nodect {
+		.nd-tree-node {
+			display: block;
+			padding: 3px 5px;
+			cursor:pointer;
+			&:hover {
+				@extend .nd-item-hovercolor;
+			}
+			border-radius:3px;
+		}
+
+		.nd-tree-icon {
+			display: inline-block;
+			margin-right: 3px;
+			width:12px;
+		}
+
+		.nd-tree-node-open {
+			transform: rotate(90deg);
+		}
+
+		/*未选中*/
+		.nd-tree-uncheck {
+			@include nd-clickicon("checkbox");
+		}
+		/*全选中*/
+		.nd-tree-checked {
+			@include nd-clickicon("checked");
+		}
+
+		/*部分选中*/
+		.nd-tree-partchecked {
+			@include nd-clickicon("partchecked");
+		}
+	}
+	/*选中*/
+	.nd-tree-node-selected{
+		@extend .nd-item-selectcolor;
+	}
+
+	.nd-tree-subct {
+		padding-left: 15px;
+		// transform:scale(0%,0%);
+		// transition: all 1s ease;
+		// height:0px;
+		display:none;
+		// overflow:hidden;
+		// @extend .nd-animation-scale-fixtop-enter
+	}
+
+	.nd-tree-subct-show {
+		display:block;
+		// height:100px;
+		// height:10px;
+		// transform:scale(100%,100%);
+	}
+	// .nd-tree-subct-hide {
+	// 	display:block;
+	// 	transform:scale(0%);
+	// }
+
+	.nd-tree-show {
+		display: block;
+	}
+
+	.nd-tree-level {
+		padding: 5px 10px;
+	}
+}

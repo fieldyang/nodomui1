@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>nodomui example - panel usage</title>
+		<link rel="stylesheet" type="text/css" href="css/nodomui.css" />
+		<script src="../node_modules/nodom/dist/nodom.js"></script>
+		<script src="../dist/nodomui.js"></script>
+
+		<style></style>
+	</head>
+
+	<body>
+		<div>
+			<!-- dataUrl='data/grid1.json' 	 -->
+			<button e-click="setTotal">setTotal</button>
+			<p>增加change事件和req事件</p>
+			<ui-test></ui-test>
+			<!-- <ui-pagination
+				totalName="total"
+				pageName="page"
+				sizeName="rows"
+				pageSize="10"
+				sizeChange="10,20,30,50"
+				showTotal
+				showGo
+				showNum="10"
+				steps="10"
+				onChange="changePage"
+				onReq="reqData"
+				onBeforeReq="beforeReq"
+				dataUrl="data/grid1.json"
+			/> -->
+		</div>
+	</body>
+	<script>
+		nodom.app({
+			module: {
+				el: "div",
+				data: {
+					// total: 0,
+				},
+				methods: {
+					setTotal: function (dom, module) {
+						console.log(this);
+						this.total = 123;
+					},
+					changePage: function (module, currentPage, pageSize) {
+						console.log(module, currentPage, pageSize);
+					},
+					reqData: function (module, data) {
+						console.log(module, data);
+						Object.assign(module.model, data);
+					},
+					beforeReq: function (module, plugin) {
+						console.log(module, plugin);
+					},
+				},
+			},
+		});
+	</script>
+</html>

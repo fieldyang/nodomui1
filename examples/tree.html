@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta title="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nodomui example - tree usage</title>
+    <link rel="stylesheet" type="text/css" href="css/nodomui.css" />
+    
+    
+</head>
+<body>
+    <div>
+        <!-- <p>增加复选框</p>
+        <button e-click='getTreeValue'>获取checked值</button>
+        <button e-click='setTreeValue'>设置checked值</button> -->
+        <!--
+            listField       显示的数据行
+            valueField      值字段名
+            displayField    显示字段名
+            itemClick       item点击事件
+            checkName       选择字段名，如果没有此项，则不显示选择框
+            icons           1-3，以“,”分割，
+                            如果为1个，则只有非叶子节点图标
+                            如果为2个，则有为非叶子节点图标和叶子节点图标
+                            如果为3个，则第一个为非叶子节点关闭图标，第二个为非叶子节点打开图标，第三个为叶子节点图标
+        -->
+        <!-- <ui-tree x-model='treeData' style='width:300px;max-height:200px;' name='tree2' listField='children'
+            icons='folderopen,link' displayField='title'  valueField='id' itemClick='clickItem' x-field='treeValue'>
+        </ui-tree> -->
+    </div>
+</body>
+<script type='module'>
+    import{nodom,Module} from './js/nodom.js'
+	import{UITree} from '../dist/nodomui1/plugins/tree.js'
+	
+    class MTree extends Module{
+        modules=[UITree]
+        template(){
+            return `
+                <div>
+                    <p>简单用法</p>
+                    <ui-tree style='width:300px;max-height:200px;' name='tree2' dataName='treeData' openField='$isOpen'
+                        icons='folderopen,link' displayField='title'  valueField='id' itemClick='clickItem' 
+                        x-data={{{treeData:'treeData'}}}>
+                    </ui-tree>
+                </div>
+            `
+        }
+        data = {
+            treeData:{
+                treeValue:[3,6],
+                children:[
+                    {id:1,title:'商品管理',$isOpen:true,children:[
+                        {id:2,title:'商品上架'},
+                        {id:3,title:'商品下架'},
+                        {id:4,title:'商品编辑'},
+                        {id:5,title:'商品统计',children:[
+                            {id:6,title:'上架统计'},
+                            {id:7,title:'下架统计'},
+                            {id:8,title:'销售统计',children:[
+                                {id:9,title:'日统计'},
+                                {id:10,title:'周统计'},
+                                {id:11,title:'月统计'},
+                                {id:12,title:'年统计'}
+                            ]}
+                        ]}
+                    ]},
+                    {id:13,title:'商家管理',children:[
+                        {id:14,title:'商家审核'},
+                        {id:15,title:'商家关店'},
+                        {id:16,title:'临时关闭'},
+                        {id:17,title:'商家统计'}
+                    ]},
+                    {id:18,title:'订单管理',children:[
+                        {id:19,title:'发货'},
+                        {id:20,title:'取消申请'},
+                        {id:21,title:'删除订单'}
+                    ]},
+                    {id:22,title:'安全管理',children:[
+                        {id:23,title:'角色管理'},
+                        {id:24,title:'用户管理'},
+                        {id:25,title:'资源管理'},
+                        {id:26,title:'权限管理'}
+                    ]}
+                ]
+            }    
+        }
+
+        methods = {
+            clickItem:function(dom,module){
+                console.log(this,dom);
+            },
+            getTreeValue:function(dom,module){
+                console.log(this.treeData.treeValue);
+            },
+            setTreeValue:function(dom,module){
+                this.treeData.treeValue=[1,2,3,20,26];
+            }
+        }
+    }
+
+    nodom(MTree,'div');
+</script>
+</html>

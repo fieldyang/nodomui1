@@ -1,0 +1,156 @@
+@import "base";
+/*floatbox*/
+.nd-floatbox {
+	@extend .nd-main-color;
+	position: absolute;
+	// display:none;
+	margin: 0;
+	padding: 0;
+	border-radius: $nd-radius;
+	> .nd-attachbox-top,
+	.nd-attachbox-left,
+	.nd-attachbox-bottom,
+	.nd-attachbox-right {
+		min-width: 150px;
+		min-height: 50px;
+		padding: $nd-padding;
+		display: inline-flex;
+		border: 1px solid $nd-color-grey5;
+		border-radius: $nd-radius;
+		background-color: $nd-color1;
+		// box-shadow: 0px 0px 8px 1px $nd-shadecolor;
+	}
+	/*悬浮在下面，小三角在上面*/
+	.nd-attachbox-bottom:after {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-bottom: 10px solid $nd-color-grey5;
+		border-top: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-left: 10px solid transparent;
+		left: 30px;
+		top: -20px;
+	}
+	.nd-attachbox-bottom:before {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-bottom: 10px solid $nd-color1;
+		border-top: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-left: 10px solid transparent;
+		left: 30px;
+		top: -18px;
+		z-index: 3;
+	}
+	/*悬浮在右边，小三角在左边*/
+	.nd-attachbox-right:after {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-bottom: 10px solid transparent;
+		border-top: 10px solid transparent;
+		border-right: 10px solid $nd-color-grey5;
+		border-left: 10px solid transparent;
+		top: 8px;
+		left: -20px;
+	}
+	.nd-attachbox-right:before {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-bottom: 10px solid transparent;
+		border-top: 10px solid transparent;
+		border-right: 10px solid $nd-color1;
+		border-left: 10px solid transparent;
+		top: 8px;
+		left: -18px;
+		z-index: 3;
+	}
+	/*悬浮在上边，小三角在下边*/
+	.nd-attachbox-top:after {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-bottom: 10px solid transparent;
+		border-top: 10px solid $nd-color-grey5;
+		border-right: 10px solid transparent;
+		border-left: 10px solid transparent;
+		top: calc(100% + 20px);
+		left: 30px;
+	}
+	.nd-attachbox-top:before {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-bottom: 10px solid transparent;
+		border-top: 10px solid $nd-color1;
+		border-right: 10px solid transparent;
+		border-left: 10px solid transparent;
+		top: calc(100% + 18px);
+		left: 30px;
+		z-index: 3;
+	}
+	/*悬浮在上边，小三角在下边*/
+	.nd-attachbox-left:after {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-bottom: 10px solid transparent;
+		border-top: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-left: 10px solid $nd-color-grey5;
+		top: 8px;
+		left: calc(100% + 21px);
+	}
+	.nd-attachbox-left:before {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-bottom: 10px solid transparent;
+		border-top: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-left: 10px solid $nd-color1;
+		top: 8px;
+		left: calc(100% + 19px);
+		z-index: 3;
+	}
+	/*蒙版*/
+	.nd-floatbox-cover {
+		background-color: $nd-color9;
+		opacity: 0.4;
+		position: inherit;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.nd-floatbox-body {
+		@extend .nd-box-default;
+		z-index: 1;
+	}
+}
+.nd-floatbox-hide {
+	width: 0px;
+	height: 0px;
+
+	.nd-floatbox-cover {
+		width: 0;
+		height: 0;
+	}
+	.nd-floatbox-body {
+		width: 0;
+		height: 0px;
+		overflow: hidden;
+	}
+}

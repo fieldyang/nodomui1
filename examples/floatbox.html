@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>nodomui example - panel usage</title>
+		<link rel="stylesheet" type="text/css" href="css/nodomui.css" />
+		<script src="../node_modules/nodom/dist/nodom.js"></script>
+		<script src="../dist/nodomui.js"></script>
+	</head>
+	<body>
+		<div style="position: relative; width: 1000px; height: 1000px">
+			<p style="position: absolute; top: 400px; left: 400px">
+				<label>姓名:</label><input type="text" e-mouseover="focusme" e-mouseout="unfunsme" />
+				<!--  -->
+				<label>测试:</label>
+				<input type="text" style="background-color: grey" e-mouseover="focusme" e-mouseout="unfunsme" />
+			</p>
+			<ui-floatbox></ui-floatbox>
+		</div>
+	</body>
+	<script>
+		nodom.app({
+			module: {
+				el: "div",
+				methods: {
+					focusme: function (dom, module, e) {
+						// let template = `<div>hello world!</div>`;
+						let dom1 = new nodom.Element("div");
+						let txt = new nodom.Element();
+						txt.textContent = "hello world!";
+						dom1.add(txt);
+						nodomui.showFloatBox(dom1, e, { type: "attach", pos: "bottom" });
+						// nodomui.floatbox(template, e);
+					},
+					unfunsme: function (dom, module, e) {
+						nodomui.hideFloatBox();
+					},
+				},
+			},
+		});
+	</script>
+</html>

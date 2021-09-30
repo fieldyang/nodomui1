@@ -1,0 +1,177 @@
+.nd-invisible {
+	visibility: hidden;
+}
+
+// 渐入
+.nd-animation-fade-enter {
+	animation-name: fade;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+}
+// 渐出
+.nd-animation-fade-leave {
+	animation-name: fade;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+}
+//  渐入,渐出动画
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+// 固定顶端缩放展开
+.nd-animation-scale-fixtop-enter {
+	animation-name: scaletop;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+}
+// 固定顶端缩放收回
+.nd-animation-scale-fixtop-leave {
+	animation-name: scaletop;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+}
+
+//  固定顶端缩放
+@keyframes scaletop {
+	0% {
+		transform-origin: top;
+		transform: scaleY(0);
+	}
+	100% {
+		transform-origin: top;
+		transform: scaleY(1);
+	}
+}
+
+// 固定底端缩放展开
+.nd-animation-scale-fixbottom-enter {
+	animation-name: scalebottom;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+}
+// 固定底端缩放收回
+.nd-animation-scale-fixbottom-leave {
+	animation-name: scalebottom;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+}
+//  固定底端缩放
+@keyframes scalebottom {
+	0% {
+		transform-origin: bottom;
+		transform: scaleY(0);
+	}
+	100% {
+		transform-origin: bottom;
+		transform: scaleY(1);
+	}
+}
+
+// 固定左端缩放展开
+.nd-animation-scale-fixleft-enter {
+	animation-name: scaleleft;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+}
+// 固定左端缩放收回
+.nd-animation-scale-fixleft-leave {
+	animation-name: scaleleft;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+}
+//  固定左端缩放
+@keyframes scaleleft {
+	0% {
+		transform-origin: left;
+		transform: scaleX(0);
+	}
+	100% {
+		transform-origin: left;
+		transform: scaleX(1);
+	}
+}
+
+// 固定右端缩放展开
+.nd-animation-scale-fixright-enter {
+	animation-name: scaleright;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+}
+// 固定右端缩放收回
+.nd-animation-scale-fixright-leave {
+	animation-name: scaleright;
+	animation-delay: 0s;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+}
+//  固定右端缩放
+@keyframes scaleright {
+	0% {
+		transform-origin: right;
+		transform: scaleX(0);
+	}
+	100% {
+		transform-origin: right;
+		transform: scaleX(1);
+	}
+}
+
+// 固定中间缩放展开-水平方向
+.nd-animation-scale-fixcenterX-enter {
+	animation-name: scalecenterX;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+}
+// 固定中间缩放收回-水平方向
+.nd-animation-scale-fixcenterX-leave {
+	animation-name: scalecenterX;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+}
+// 固定中间缩放-水平方向
+@keyframes scalecenterX {
+	0% {
+		transform-origin: center;
+		transform: scaleX(0);
+	}
+	100% {
+		transform-origin: top;
+		transform: scaleX(1);
+	}
+}
+
+// 固定中间缩放展开-竖直方向
+.nd-animation-scale-fixcenterY-enter {
+	animation-name: scalecenterY;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+}
+// 固定中间缩放收回-竖直方向
+.nd-animation-scale-fixcenterY-leave {
+	animation-name: scalecenterY;
+	// animation-delay: 0s;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+}
+// 固定中间缩放-竖直方向
+@keyframes scalecenterY {
+	0% {
+		transform-origin: center;
+		transform: scaleY(0);
+	}
+	100% {
+		transform-origin: top;
+		transform: scaleY(1);
+	}
+}
