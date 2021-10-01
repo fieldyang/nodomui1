@@ -2733,7 +2733,7 @@ class EventManager {
                                 if (execMap.get(ev.id) === dom1.key) {
                                     break;
                                 }
-                                ev.handler.apply(dom1.model, [dom1, module, ev, e]);
+                                ev.handler.apply(module, [dom1.model, dom1, ev, e]);
                                 execMap.set(ev.id, dom1.key);
                                 if (ev.once) {
                                     EventManager.unbind(module, dom1, ev);
@@ -2744,7 +2744,7 @@ class EventManager {
                     }
                 }
                 else {
-                    ev.handler.apply(dom.model, [dom, module, ev, e]);
+                    ev.handler.apply(module, [dom.model, dom, ev, e]);
                     //事件只执行一次，从事件数组删除
                     if (ev.once) {
                         EventManager.unbind(module, dom, ev);
@@ -3765,7 +3765,7 @@ class Element {
                 m = module.getMethod(m);
             }
             if (m) {
-                m.apply(this.model, [this, module]);
+                m.apply(this, [this.model, module]);
             }
         }
     }
@@ -4243,24 +4243,6 @@ const NodomMessage_zh = {
 };
 
 /**
- * 方法工厂
- */
-class MethodFactory extends NFactory {
-    /**
-     * 调用方法
-     * @param name 		方法名
-     * @param params 	方法参数数组
-     */
-    invoke(name, params) {
-        const foo = this.get(name);
-        if (!Util.isFunction(foo)) {
-            throw new NError(NodomMessage.ErrorMsgs['notexist1'], NodomMessage.TipWords['method'], name);
-        }
-        return Util.apply(foo, this.module.model, params);
-    }
-}
-
-/**
  * 模型类
  */
 class Model {
@@ -4299,7 +4281,7 @@ class Model {
                 if (Array.isArray(src) && ['sort', 'fill'].indexOf(key) !== -1) { //强制渲染
                     mm.update(proxy, null, null, null, true);
                 }
-                let data = module.modelManager.getFromDataMap(src[key]);
+                let data = mm.getFromDataMap(src[key]);
                 if (data) {
                     return data;
                 }
@@ -5659,6 +5641,10 @@ DirectiveElementManager.add([MODULE, FOR, IF, RECUR, ELSE, ELSEIF, ENDIF, SLOT])
             let d = model.$get(field);
             //数据赋值
             if (d !== undefined) {
+                //对象需要克隆
+                if (typeof d === 'object') {
+                    d = Util.clone(d, /^\$/);
+                }
                 m[p] = d;
             }
             //反向处理
@@ -5871,7 +5857,7 @@ EventManager.regist('tap', {
                 foo = module.getMethod(foo);
             }
             if (foo) {
-                foo.apply(dom.model, [dom, module, evtObj.dependEvent, e]);
+                foo.apply(module, [dom.model, dom, evtObj.dependEvent, e]);
             }
         }
     }
@@ -5942,7 +5928,7 @@ EventManager.regist('swipe', {
                     foo = module.getMethod(foo);
                 }
                 if (foo) {
-                    foo.apply(dom.model, [dom, module, evtObj.dependEvent, e]);
+                    foo.apply(module, [dom.model, dom, evtObj.dependEvent, e]);
                 }
             }
         }
@@ -5954,5 +5940,5 @@ EventManager.regist('swiperight', EventManager.get('swipe'));
 EventManager.regist('swipeup', EventManager.get('swipe'));
 EventManager.regist('swipedown', EventManager.get('swipe'));
 
-export { Compiler, CssManager, Directive, DirectiveElement, DirectiveElementManager, DirectiveManager, DirectiveType, Element, EventManager, Expression, GlobalCache, MethodFactory, Model, ModelManager, Module, ModuleFactory, NCache, NError, NEvent, NFactory, NodomMessage, NodomMessage_en, NodomMessage_zh, Renderer, Route, Router, Scheduler, Util, createDirective, createRoute, nodom, registModule, request };
+export { Compiler, CssManager, Directive, DirectiveElement, DirectiveElementManager, DirectiveManager, DirectiveType, Element, EventManager, Expression, GlobalCache, Model, ModelManager, Module, ModuleFactory, NCache, NError, NEvent, NFactory, NodomMessage, NodomMessage_en, NodomMessage_zh, Renderer, Route, Router, Scheduler, Util, createDirective, createRoute, nodom, registModule, request };
 //# sourceMappingURL=nodom.js.map

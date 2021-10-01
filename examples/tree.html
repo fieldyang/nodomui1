@@ -26,7 +26,7 @@
                             如果为3个，则第一个为非叶子节点关闭图标，第二个为非叶子节点打开图标，第三个为叶子节点图标
         -->
         <!-- <ui-tree x-model='treeData' style='width:300px;max-height:200px;' name='tree2' listField='children'
-            icons='folderopen,link' displayField='title'  valueField='id' itemClick='clickItem' x-field='treeValue'>
+            icons='folderopen,link' displayField='title'  valueField='id' itemClick='clickItem'  x-field='treeValue'>
         </ui-tree> -->
     </div>
 </body>
@@ -40,8 +40,8 @@
             return `
                 <div>
                     <p>简单用法</p>
-                    <ui-tree style='width:300px;max-height:200px;' name='tree2' dataName='treeData' openField='$isOpen'
-                        icons='folderopen,link' displayField='title'  valueField='id' itemClick='clickItem' 
+                    <ui-tree style='width:300px;max-height:200px;' name='tree2' dataName='treeData' openField='$isOpen' checkField='$checked'
+                        icons='folderopen,link' displayField='title'  valueField='id'  itemClick='clickItem' 
                         x-data={{{treeData:'treeData'}}}>
                     </ui-tree>
                 </div>

@@ -17286,15 +17286,21 @@ i {
     .nd-tree .nd-tree-nodect .nd-tree-icon {
       display: inline-block;
       margin-right: 3px;
-      width: 12px; }
+      width: 16px; }
     .nd-tree .nd-tree-nodect .nd-tree-node-open {
       transform: rotate(90deg); }
-    .nd-tree .nd-tree-nodect .nd-tree-uncheck:hover {
-      color: #5FB878; }
-    .nd-tree .nd-tree-nodect .nd-tree-checked:hover {
-      color: #5FB878; }
-    .nd-tree .nd-tree-nodect .nd-tree-partchecked:hover {
-      color: #5FB878; }
+    .nd-tree .nd-tree-nodect .nd-tree-uncheck {
+      width: 16px; }
+      .nd-tree .nd-tree-nodect .nd-tree-uncheck:hover {
+        color: #5FB878; }
+    .nd-tree .nd-tree-nodect .nd-tree-checked {
+      width: 16px; }
+      .nd-tree .nd-tree-nodect .nd-tree-checked:hover {
+        color: #5FB878; }
+    .nd-tree .nd-tree-nodect .nd-tree-partchecked {
+      width: 16px; }
+      .nd-tree .nd-tree-nodect .nd-tree-partchecked:hover {
+        color: #5FB878; }
   .nd-tree .nd-tree-subct {
     padding-left: 15px;
     display: none; }
