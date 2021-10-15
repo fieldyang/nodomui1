@@ -39,23 +39,27 @@
         template(){
             return `
                 <div>
+                    <button e-click='change'>change</button>
+                    <div >{{treeValue}}</div>
                     <p>简单用法</p>
-                    <ui-tree style='width:300px;max-height:200px;' name='tree2' dataName='treeData' openField='$isOpen' checkField='$checked'
-                        icons='folderopen,link' displayField='title'  valueField='id'  itemClick='clickItem' 
-                        x-data={{{treeData:'treeData'}}}>
+                    <ui-tree style='width:300px;max-height:200px;' 
+                        name='tree2' dataName='treeData' openField='$isOpen' 
+                        checkField='$checked' displayField='title'  valueField='id'
+                        icons='folderopen,link' itemClick='clickItem' field='tvalue'
+                        $treeData={{treeData}} $treeValue={{treeValue}}>
                     </ui-tree>
                 </div>
             `
         }
         data = {
+            treeValue:[3,6],
             treeData:{
-                treeValue:[3,6],
                 children:[
                     {id:1,title:'商品管理',$isOpen:true,children:[
                         {id:2,title:'商品上架'},
                         {id:3,title:'商品下架'},
                         {id:4,title:'商品编辑'},
-                        {id:5,title:'商品统计',children:[
+                        {id:5,title:'商品统计',$isOpen:false,children:[
                             {id:6,title:'上架统计'},
                             {id:7,title:'下架统计'},
                             {id:8,title:'销售统计',children:[
@@ -66,7 +70,7 @@
                             ]}
                         ]}
                     ]},
-                    {id:13,title:'商家管理',children:[
+                    {id:13,title:'商家管理',$isOpen:true,children:[
                         {id:14,title:'商家审核'},
                         {id:15,title:'商家关店'},
                         {id:16,title:'临时关闭'},
@@ -90,6 +94,9 @@
         methods = {
             clickItem:function(dom,module){
                 console.log(this,dom);
+            },
+            change(model){
+                model.treeValue.push(5);
             },
             getTreeValue:function(dom,module){
                 console.log(this.treeData.treeValue);
