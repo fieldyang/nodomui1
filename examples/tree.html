@@ -11,23 +11,6 @@
 </head>
 <body>
     <div>
-        <!-- <p>增加复选框</p>
-        <button e-click='getTreeValue'>获取checked值</button>
-        <button e-click='setTreeValue'>设置checked值</button> -->
-        <!--
-            listField       显示的数据行
-            valueField      值字段名
-            displayField    显示字段名
-            itemClick       item点击事件
-            checkName       选择字段名，如果没有此项，则不显示选择框
-            icons           1-3，以“,”分割，
-                            如果为1个，则只有非叶子节点图标
-                            如果为2个，则有为非叶子节点图标和叶子节点图标
-                            如果为3个，则第一个为非叶子节点关闭图标，第二个为非叶子节点打开图标，第三个为叶子节点图标
-        -->
-        <!-- <ui-tree x-model='treeData' style='width:300px;max-height:200px;' name='tree2' listField='children'
-            icons='folderopen,link' displayField='title'  valueField='id' itemClick='clickItem'  x-field='treeValue'>
-        </ui-tree> -->
     </div>
 </body>
 <script type='module'>
@@ -93,17 +76,8 @@
         }
 
         methods = {
-            clickItem:function(dom,module){
-                console.log(this,dom);
-            },
-            change(model){
-                model.treeValue = [5,6,7];
-            },
-            getTreeValue:function(model,dom){
-                console.log(model.treeValue);
-            },
-            setTreeValue:function(dom,module){
-                this.treeData.treeValue=[1,2,3,20,26];
+            clickItem:function(model,dom){
+                console.log(model,dom);
             }
         }
     }
