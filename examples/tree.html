@@ -40,19 +40,20 @@
             return `
                 <div>
                     <button e-click='change'>change</button>
-                    <div >{{treeValue}}</div>
+                    <div >value is: {{treeValue.join(',')}}</div>
                     <p>简单用法</p>
                     <ui-tree style='width:300px;max-height:200px;' 
-                        name='tree2' dataName='treeData' openField='$isOpen' 
+                        dataName='treeData' valueName='treeValue' openField='$isOpen' 
                         checkField='$checked' displayField='title'  valueField='id'
-                        icons='folderopen,link' itemClick='clickItem' field='tvalue'
+                        icons='folderopen,link' itemClick='clickItem' 
                         $treeData={{treeData}} $treeValue={{treeValue}}>
                     </ui-tree>
                 </div>
             `
         }
         data = {
-            treeValue:[3,6],
+            xxx:1,
+            treeValue:[],
             treeData:{
                 children:[
                     {id:1,title:'商品管理',$isOpen:true,children:[
@@ -96,10 +97,10 @@
                 console.log(this,dom);
             },
             change(model){
-                model.treeValue.push(5);
+                model.treeValue = [5,6,7];
             },
-            getTreeValue:function(dom,module){
-                console.log(this.treeData.treeValue);
+            getTreeValue:function(model,dom){
+                console.log(model.treeValue);
             },
             setTreeValue:function(dom,module){
                 this.treeData.treeValue=[1,2,3,20,26];

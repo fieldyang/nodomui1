@@ -1,8 +1,19 @@
 // import { Module,registModule,ModuleFactory,VirtualDom,ModelManager } from "../../../examples/js/nodom.js";
-import { ModelManager } from "../../nodom3.2/core/modelmanager.js";
 import { Module } from "../../nodom3.2/core/module.js";
 import { registModule,Model ,VirtualDom} from "../examples/js/nodom.js";
 
+/**
+ * 树形插件
+ * 参数说明
+ * dataName：       树依赖数据项名，格式为嵌套数组，数据通过props传递，与props传递的数据项一致
+ * valueName：      值属性名，如果需要树产生选中节点值，通过props传递，与props传递的数据项一致
+ * openField：      树节点展开数据项名，默认$isOpen
+ * checkField：     选中数据项名，如果配置，则显示checkbox，默认为$checked
+ * displayField：   数据项中用于显示的属性名
+ * valueField：     数据项中用于取值的属性名
+ * icons：          树节点图标，依次为为非叶子节点关闭状态，打开状态，叶子节点，如果只有两个，则表示非叶子节点和叶子节点，如果1个，则表示非叶子节点
+ * itemClick：      节点点击事件
+ */
 export class UITree extends Module{
     /**
      * 数据项名
@@ -48,14 +59,12 @@ export class UITree extends Module{
         this.dataName = props.dataName;
         this.displayField = props.displayField;
         this.valueField = props.valueField;
-        
+        this.field = props.valueName;
         let openName = props.openField || '$isOpen';
         this.openName = openName;
         let checkName = props.checkField || '$checked';
         this.checkName = checkName;
         this.itemClickEvent = props.itemClick;
-        this.field = props.field;
-        
         this.icons = props.icons?props.icons.split(',').map(item=>item.trim()):undefined;
         
         let temp =  `
@@ -156,14 +165,14 @@ export class UITree extends Module{
             this.handleCheck(dom.parent.parent);
         },
         onBeforeFirstRender(model){
-            model[this.dataName] = this.props.$data[this.dataName];
-            //新数据绑定到当前模块
-            ModelManager.bindToModule(model[this.dataName],this);
+            //用$set方法，实现model模块绑定
+            model.$set(this.dataName,this.props.$data[this.dataName],this);
+            model[this.field] = this.props.$data[this.field];
             if(this.field){
                 model.$watch(this.field,()=>{
                     this.setValue(model[this.field]);
                 })
-                // this.setValue(model[this.field]);
+                this.setValue(model[this.field]);
             }
         }
     }
@@ -185,6 +194,7 @@ export class UITree extends Module{
             }
         }
         model[this.checkName] = state;
+        this.changeValue(model);
         this.handleSubCheck(model,state);
         this.leafToRoot();
     }
@@ -201,48 +211,22 @@ export class UITree extends Module{
        }
        for(let r of rows){
            r[this.checkName] = state;
+           this.changeValue(r);
            this.handleSubCheck(r,state);
        }
     }
 
     /**
-     * 获取value
-     */
-    public getValue():any[]{
-        const me = this;
-        if(!this.dataName || this.valueField === '' ){
-            return;
-        }
-        let va = [];
-        let model = this.model;
-        getChecked(this.model);
-        model[this.dataName] = va;
-        return va;
-
-        function getChecked(m){
-            if(!m.children){
-                return;
-            }
-            for(let r of m.children){
-                if(r[me.checkName] === 1){
-                    va.push(r[me.valueField]);
-                }
-                getChecked(r);
-            }
-        }
-    }
-
-    /**
      * 设置值
      * @param value 
-     * @returns 
      */
     public setValue(value){
         const me = this;
-        if(!this.dataName || this.valueField === '' ){
+        if(!value || !this.field || this.valueField === '' ){
             return;
         }
         setNode(this.model[this.dataName]);
+        
         //反向处理
         this.leafToRoot();
         /**
@@ -256,7 +240,6 @@ export class UITree extends Module{
                 //处理子节点
                 me.handleSubCheck(me.model,1);
                 //移除该值
-                value.splice(ind,1);
             }else if(m.children){ //处理子节点
                 for(let m1 of m.children){
                     setNode(m1);
@@ -266,9 +249,37 @@ export class UITree extends Module{
     }
 
     /**
+     * 修改树的值
+     * @param model     节点model 
+     * @returns 
+     */
+    private changeValue(model){
+        if(!this.field || !this.valueField){
+            return;
+        }
+        let state = model[this.checkName];
+        let m1 = this.model;
+        let value = this.model[this.field];
+        if(!value){
+            value = [];
+        }
+
+        //当前model的value值
+        let cv = model[this.valueField];
+        let ind = value.indexOf(cv);
+        if(state === 1){ //选中，增加值
+            if(ind === -1){
+                value.push(cv);
+            }
+        }else if(ind !== -1){ //未选中,移除
+            value.splice(ind,1);
+        }
+    }
+
+    /**
      * 叶子到根反向处理
      */
-     leafToRoot(){
+    private leafToRoot(){
         const me = this;
         let modelList;
         let modelMap;
@@ -276,7 +287,7 @@ export class UITree extends Module{
         if (!pmodel || !pmodel.children) {
             return;
         }
-
+        
         for (let m of pmodel.children) {
             modelMap = new WeakMap();
             modelList = [];
@@ -284,11 +295,13 @@ export class UITree extends Module{
         }
 
         function handleOne(model) {
+            if(modelList.length>0 && model[me.checkName] === 1){
+                let last = modelList[modelList.length-1];
+                modelMap.get(last).cnt++;
+            }
             //先处理子节点
             if (model.children && model.children.length > 0) {
-                //由子节点确定是否选中
-                model[me.checkName] = 0;
-                //设置为1时的数量，孩子设置为1时 --
+                //设置初始状态
                 modelMap.set(model, { need: model.children.length, cnt: 0 });
                 //父节点入栈
                 modelList.push(model);
@@ -297,52 +310,18 @@ export class UITree extends Module{
                 }
                 //子节点处理结束，父节点出栈
                 modelList.pop();
-            }
-            handleUp(model[me.checkName]);
-        }
-
-        /**
-         * 向上处理
-         */
-        function handleUp(state) {
-            if (modelList.length === 0) {
-                return;
-            }
-
-            //1个为2，则所有父为2
-            if(state === 2){
-                for (let m of modelList) {
-                    m[me.checkName] = 2;   
+                let cfg = modelMap.get(model);
+                if(cfg.need === cfg.cnt){   //子节点全选中
+                    model[me.checkName] = 1;
+                }else if(cfg.cnt === 0){    //子节点全未选中
+                    model[me.checkName] = 0;
+                }else{                      //部分选中
+                    model[me.checkName] = 2;
                 }
-                return;
-            }
-            
-            for (let i = modelList.length - 1; i >= 0; i--) {
-                let m = modelList[i];
-                let cfg = modelMap.get(m);
-                if (state === 1) {
-                    cfg.cnt++;
-                }
-                
-                let st;
-                if (cfg.need <= cfg.cnt) { //子节点全选中
-                    st = 1;
-                    // modelList.pop();
-                }else if (cfg.cnt === 0) {
-                    st = 0;
-                }else {
-                    st = 2;
-                }
-                //状态未改变，不向上处理
-                if(st === m[me.checkName]){
-                    return;
-                }else{
-                    m[me.checkName] = st;
-                }
-                state = st;
+                me.changeValue(model);
             }
         }
     }
 }
-
+//注册模块
 registModule(UITree,'ui-tree');
