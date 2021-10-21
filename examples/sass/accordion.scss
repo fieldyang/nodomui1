@@ -4,8 +4,8 @@
 	//  @extend .nd-commonbox;
 	@include nd-color-set('black',rgba($nd-color-white,0.7));
 	.nd-accordion-item {
-		.nd-accordion-first {
-			padding: $nd-padding * 2;
+		.nd-accordion-title {
+			padding: $nd-padding*2;
 			font-size: $nd-fontnormal;
 			font-weight: bold;
 			width: 100%;
@@ -15,35 +15,20 @@
 		}
 
 		.nd-accordion-icon {
-			display: inline-block;
+			@extend .nd-icon-arrow-right;
 		}
 
 		.nd-accordion-open {
 			transform: rotate(90deg);
 		}
-
-		.nd-accordion-secondct {
-			.nd-accordion-second {
-				height: 30px;
-				line-height: 30px;
-				text-indent: 2em;
-				font-size: $nd-fontnormal;
-				display: block;
-				background-color: rgba($nd-color-realBlack,.2);
-			}
-
-			.nd-accordion-selected {
-				//  @extend .nd-item-selectcolor;
-				//  @include nd-color(2);
-			background-color: $nd-color-green;
-			}
-
-			.nd-accordion-second:hover {
-				// @extend .nd-hover-active;
-				// @include nd-color-set('black',#fff)
-				color: #fff;
-			}
+	
+		.nd-accordion-content {
+			padding: $nd-padding*2;
+			font-size:$nd-fontsmall;
+			display: block;
+			background-color: rgba($nd-color-realBlack,.2);
 		}
+
 		.nd-accordion-hide {
 			display: none;
 		}

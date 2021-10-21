@@ -1813,6 +1813,9 @@ class Renderer {
         if (!parent) {
             this.currentModuleRoot = dst;
         }
+        if (src.staticNum > 0) {
+            src.staticNum--;
+        }
         dst.model = model;
         dst.subModuleId = src.subModuleId;
         // 设置父对象
@@ -5358,7 +5361,7 @@ DirectiveElementManager.add([MODULE, FOR, IF, RECUR, ELSE, ELSEIF, ENDIF, SLOT])
     createDirective('module', function (module, dom, src) {
         let m;
         //存在moduleId，表示已经渲染过，不渲染
-        let mid = src.subModuleId;
+        let mid = dom.getParam(module, 'moduleId');
         let handle = true;
         if (mid) {
             m = ModuleFactory.get(mid);
@@ -5371,7 +5374,8 @@ DirectiveElementManager.add([MODULE, FOR, IF, RECUR, ELSE, ELSEIF, ENDIF, SLOT])
             }
             mid = m.id;
             //保留modelId
-            src.subModuleId = mid;
+            // src.subModuleId = mid;
+            dom.setParam(module, 'moduleId', mid);
         }
         //保存到dom上，提升渲染性能
         dom.subModuleId = mid;
@@ -5392,9 +5396,9 @@ DirectiveElementManager.add([MODULE, FOR, IF, RECUR, ELSE, ELSEIF, ENDIF, SLOT])
                         o[p[0]] = p[1];
                     }
                 }
-                //传递给模块
-                m.setProps(o);
             }
+            //传递给模块
+            m.setProps(o);
         }
         return true;
     }, 8);
