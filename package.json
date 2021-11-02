@@ -28,5 +28,6 @@
     "url": "https://github.com/fieldyang/nodomui1/issues"
   },
   "homepage": "https://github.com/fieldyang/nodomui1#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {}
 }

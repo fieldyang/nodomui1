@@ -18,7 +18,6 @@
 	import{UITree} from '../dist/nodomui1/plugins/tree.js'
 	
     class MTree extends Module{
-        modules=[UITree]
         template(){
             return `
                 <div>
@@ -34,51 +33,51 @@
                 </div>
             `
         }
-        data = {
-            xxx:1,
-            treeValue:[],
-            treeData:{
-                children:[
-                    {id:1,title:'商品管理',$isOpen:true,children:[
-                        {id:2,title:'商品上架'},
-                        {id:3,title:'商品下架'},
-                        {id:4,title:'商品编辑'},
-                        {id:5,title:'商品统计',$isOpen:false,children:[
-                            {id:6,title:'上架统计'},
-                            {id:7,title:'下架统计'},
-                            {id:8,title:'销售统计',children:[
-                                {id:9,title:'日统计'},
-                                {id:10,title:'周统计'},
-                                {id:11,title:'月统计'},
-                                {id:12,title:'年统计'}
+        data(){
+            return {
+                xxx:1,
+                treeValue:[],
+                treeData:{
+                    children:[
+                        {id:1,title:'商品管理',$isOpen:true,children:[
+                            {id:2,title:'商品上架'},
+                            {id:3,title:'商品下架'},
+                            {id:4,title:'商品编辑'},
+                            {id:5,title:'商品统计',$isOpen:false,children:[
+                                {id:6,title:'上架统计'},
+                                {id:7,title:'下架统计'},
+                                {id:8,title:'销售统计',children:[
+                                    {id:9,title:'日统计'},
+                                    {id:10,title:'周统计'},
+                                    {id:11,title:'月统计'},
+                                    {id:12,title:'年统计'}
+                                ]}
                             ]}
+                        ]},
+                        {id:13,title:'商家管理',$isOpen:true,children:[
+                            {id:14,title:'商家审核'},
+                            {id:15,title:'商家关店'},
+                            {id:16,title:'临时关闭'},
+                            {id:17,title:'商家统计'}
+                        ]},
+                        {id:18,title:'订单管理',children:[
+                            {id:19,title:'发货'},
+                            {id:20,title:'取消申请'},
+                            {id:21,title:'删除订单'}
+                        ]},
+                        {id:22,title:'安全管理',children:[
+                            {id:23,title:'角色管理'},
+                            {id:24,title:'用户管理'},
+                            {id:25,title:'资源管理'},
+                            {id:26,title:'权限管理'}
                         ]}
-                    ]},
-                    {id:13,title:'商家管理',$isOpen:true,children:[
-                        {id:14,title:'商家审核'},
-                        {id:15,title:'商家关店'},
-                        {id:16,title:'临时关闭'},
-                        {id:17,title:'商家统计'}
-                    ]},
-                    {id:18,title:'订单管理',children:[
-                        {id:19,title:'发货'},
-                        {id:20,title:'取消申请'},
-                        {id:21,title:'删除订单'}
-                    ]},
-                    {id:22,title:'安全管理',children:[
-                        {id:23,title:'角色管理'},
-                        {id:24,title:'用户管理'},
-                        {id:25,title:'资源管理'},
-                        {id:26,title:'权限管理'}
-                    ]}
-                ]
-            }    
+                    ]
+                }    
+            }
         }
 
-        methods = {
-            clickItem:function(model,dom){
-                console.log(model,dom);
-            }
+        clickItem(model,dom){
+            console.log(model,dom);
         }
     }
 

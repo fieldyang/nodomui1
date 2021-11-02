@@ -1,6 +1,5 @@
-// import { Module,registModule,ModuleFactory,VirtualDom,ModelManager } from "../../../examples/js/nodom.js";
-import { Module } from "../../nodom3.2/core/module.js";
-import { registModule,Model ,VirtualDom} from "../examples/js/nodom.js";
+// import { Module,registModule,VirtualDom,ModelManager } from "../../../examples/js/nodom.js";
+import { registModule, Model, Module ,VirtualDom} from "../../nodom3.3";
 
 /**
  * 树形插件
@@ -51,10 +50,15 @@ export class UITree extends Module{
     field:string;
 
     /**
-     * 节点点击事件
+     * 节点点击事件名
      */
-    itemClickEvent:Function;
+    itemClickEventName:string;
 
+    /**
+     * 模版函数
+     * @param props     父模块传递的属性值 
+     * @returns         模版字符串
+     */
     template(props?:any):string{
         this.dataName = props.dataName;
         this.displayField = props.displayField;
@@ -64,10 +68,10 @@ export class UITree extends Module{
         this.openName = openName;
         let checkName = props.checkField || '$checked';
         this.checkName = checkName;
-        this.itemClickEvent = props.itemClick;
+        this.itemClickEventName = props.itemClick;
         this.icons = props.icons?props.icons.split(',').map(item=>item.trim()):undefined;
         
-        let temp =  `
+        return `
             <div class='nd-tree' x-model=${props.dataName}>
                 <for cond={{children}} class='nd-tree-nodect' value={{${props.valueField}}}>
 				    <div class='nd-tree-node'>
@@ -90,92 +94,133 @@ export class UITree extends Module{
                 </for>
             </div>
         `;
-        return temp;
     }
 
-    methods = {
-        //创建选择框class
-        genCheckCls(checked){
-            let arr = ['nd-tree-icon'];
-            if(!checked){
-                arr.push('nd-tree-uncheck');
-            }else if(checked === 1){
-                arr.push('nd-tree-checked');
-            }else{
-                arr.push('nd-tree-partchecked');
-            }
-            return arr.join(' ');
-        },
+    
+    /**
+     * 创建选择框class
+     * @param checked   选中标识 true:选中  false:未选中
+     * @returns         选择框class
+     */ 
+    genCheckCls(checked){
+        let arr = ['nd-tree-icon'];
+        if(!checked){
+            arr.push('nd-tree-uncheck');
+        }else if(checked === 1){
+            arr.push('nd-tree-checked');
+        }else{
+            arr.push('nd-tree-partchecked');
+        }
+        return arr.join(' ');
+    }
 
-        //创建树左侧箭头class
-        genArrowCls(isLeaf,isOpen){
-            let arr = ['nd-tree-icon'];
-            if(!isLeaf){
-                arr.push('nd-icon-arrow-right');
-            }
+    /**
+     * 创建树左侧箭头class
+     * @param isLeaf    是否未叶子节点
+     * @param isOpen    是否展开
+     * @returns         箭头(展开收拢)图标class
+     */
+    genArrowCls(isLeaf,isOpen){
+        let arr = ['nd-tree-icon'];
+        if(!isLeaf){
+            arr.push('nd-icon-arrow-right');
+        }
+        if(isOpen){
+            arr.push('nd-tree-node-open');
+        }
+        return arr.join(' ');
+    }
+    
+    /**
+     * 显示文件夹图标
+     * @param isLeaf    是否叶子节点
+     * @param isOpen    是否展开
+     * @returns         文件夹图标class
+     */
+    genFolderCls(isLeaf,isOpen){
+        if (!this.icons || this.icons.length === 0) {
+            return;
+        }
+        const arr = this.icons;
+        //icon cls arr
+        let arr1 = ['nd-tree-icon'];
+        if(arr.length === 1){
+            arr1.push(isLeaf?'':'nd-icon-' + arr[0]);
+        }else if(arr.length===2){
+            arr1.push('nd-icon-' + (isLeaf?arr[1]:arr[0]));
+        }else if(arr.length===3){
             if(isOpen){
-                arr.push('nd-tree-node-open');
-            }
-            return arr.join(' ');
-        },
-        
-        //显示文件夹图标
-        genFolderCls(isLeaf,isOpen){
-            if (!this.icons || this.icons.length === 0) {
-                return;
-            }
-            const arr = this.icons;
-            //icon cls arr
-            let arr1 = ['nd-tree-icon'];
-            if(arr.length === 1){
-                arr1.push(isLeaf?'':'nd-icon-' + arr[0]);
-            }else if(arr.length===2){
-                arr1.push('nd-icon-' + (isLeaf?arr[1]:arr[0]));
-            }else if(arr.length===3){
-                if(isOpen){
-                    arr1.push('nd-icon-' + (isLeaf?arr[2]:arr[1]));
-                }else{
-                    arr1.push('nd-icon-' + (isLeaf?arr[2]:arr[0]));
-                }
-            }
-            return arr1.join(' ');
-        },
-        //创建子树css
-        genSubCls(isOpen){
-            return isOpen?'nd-tree-subct nd-tree-subct-show':'nd-tree-subct';
-        },
-        //点击item事件
-        clickItem(model,dom,eobj,e){
-            if(!this.itemClickEvent){
-                return;
-            }
-            let foo = this.getParent().getMethod(this.itemClickEvent);
-            if(!foo){
-                return;
-            }
-            foo.apply(this,[model,dom,eobj,e]);
-        },
-
-        //展开关闭
-        expandClose(model,dom,eobj,e){
-            model[this.openName] = !model[this.openName];
-        },
-        //checkbox 点击
-        checkItem(model,dom,eobj,e){
-            this.handleCheck(dom.parent.parent);
-        },
-        onBeforeFirstRender(model){
-            //用$set方法，实现model模块绑定
-            model.$set(this.dataName,this.props.$data[this.dataName],this);
-            model[this.field] = this.props.$data[this.field];
-            if(this.field){
-                model.$watch(this.field,()=>{
-                    this.setValue(model[this.field]);
-                })
-                this.setValue(model[this.field]);
+                arr1.push('nd-icon-' + (isLeaf?arr[2]:arr[1]));
+            }else{
+                arr1.push('nd-icon-' + (isLeaf?arr[2]:arr[0]));
             }
         }
+        return arr1.join(' ');
     }
+    /**
+     * 创建子树css
+     * @param isOpen    是否展开 
+     * @returns         子树class
+     */
+    genSubCls(isOpen){
+        return isOpen?'nd-tree-subct nd-tree-subct-show':'nd-tree-subct';
+    }
+    /**
+     * 点击item事件
+     * @param model     当前节点对应model 
+     * @param dom       virtual dom节点
+     * @param eobj      NEvent对象
+     * @param e         event对象
+     */
+    clickItem(model,dom,eobj,e){
+        if(!this.itemClickEventName){
+            return;
+        }
+        let foo = this.getParent().getMethod(this.itemClickEventName);
+        if(!foo){
+            return;
+        }
+        foo.apply(this,[model,dom,eobj,e]);
+    }
+
+    /**
+     * 展开关闭节点
+     * @param model 当前节点对应model 
+     * @param dom       virtual dom节点
+     * @param eobj      NEvent对象
+     * @param e         event对象
+     */
+    expandClose(model,dom,eobj,e){
+        model[this.openName] = !model[this.openName];
+    }
+    
+    /**
+     * checkbox 点击
+     * @param model     当前节点对应model 
+     * @param dom       virtual dom节点
+     * @param eobj      NEvent对象
+     * @param e         event对象
+     */
+    checkItem(model,dom,eobj,e){
+        this.handleCheck(dom.parent.parent);
+    }
+
+    /**
+     * 首次渲染事件
+     * @param model     树对应model 
+     */
+    onBeforeFirstRender(model){
+        //用$set方法，实现model模块绑定
+        model.$set(this.dataName,this.props.$data[this.dataName],this);
+        model[this.field] = this.props.$data[this.field];
+        if(this.field){
+            model.$watch(this.field,()=>{
+                this.setValue(model[this.field]);
+            })
+            this.setValue(model[this.field]);
+        }
+    }
+
 
     /**
     * 处理选中状态

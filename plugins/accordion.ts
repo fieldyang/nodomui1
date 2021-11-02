@@ -1,7 +1,7 @@
 // import { Module,registModule,ModuleFactory } from "../../../examples/js/nodom.js";
-import { Model } from "../../nodom3.2/core/model.js";
-import { ModuleFactory } from "../../nodom3.2/index.js";
-import { Module,registModule } from "../examples/js/nodom.js";
+
+import { registModule, ModuleFactory, Model, Module } from "../../nodom3.3";
+
 
 /**
  * 折叠插件
@@ -28,6 +28,8 @@ registModule(UIAccordion,'ui-accordion');
  */
 export class UIAccordionItem extends Module{
     private open:boolean;
+    private showSingle:boolean;
+
     template(props?:any):string{
         this.open = (props['open'] === 'true');
         return `
@@ -43,26 +45,25 @@ export class UIAccordionItem extends Module{
         `
     }
 
-    methods={
-        onBeforeFirstRender(model){
-            model['$open'] = this.open;
-            let module = ModuleFactory.get(this.parentId);
-            this.showSingle = module['single'];
-        },
-        clickItem(model:Model,dom){
-            let module = ModuleFactory.get(this.parentId);
-            if(module['single']){
-                for(let mid of module.children){
-                    let m:Module = ModuleFactory.get(mid);
-                    if(mid !== this.id){
-                        m.model['$open'] = false;
-                    }else{
-                        m.model['$open'] = true;
-                    }
+    onBeforeFirstRender(model){
+        model['$open'] = this.open;
+        let module = ModuleFactory.get(this.parentId);
+        this.showSingle = module['single'];
+    }
+
+    clickItem(model:Model,dom){
+        let module = ModuleFactory.get(this.parentId);
+        if(module['single']){
+            for(let mid of module.children){
+                let m:Module = ModuleFactory.get(mid);
+                if(mid !== this.id){
+                    m.model['$open'] = false;
+                }else{
+                    m.model['$open'] = true;
                 }
-            }else{
-                model['$open'] = !model['$open'];
             }
+        }else{
+            model['$open'] = !model['$open'];
         }
     }
 }

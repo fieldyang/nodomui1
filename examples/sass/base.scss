@@ -19,7 +19,6 @@ $nd-errorcolor: #f00;
 $nd-linkcolor: rgb(38, 117, 246);
 $nd-linkcolorvisted: rgb(30, 100, 200);
 
-
 /*
 默认主题颜色
 */
@@ -462,25 +461,25 @@ button,
 input {
 	outline: none;
 }
-
+$nd-scrollbar-width:10px;
 /**滚动条**/
 ::-webkit-scrollbar {
-	@media screen and (max-width: 640px) {
-		width: 2px;
-		height: 2px;
-	}
+	// @media screen and (max-width: 640px) {
+		width: $nd-scrollbar-width;
+		height: $nd-scrollbar-width;
+	// }
 
-	@media screen and (min-width: 640px) {
+/*	@media screen and (min-width: 640px) {
 		width: 10px;
 		height: 10px;
-	}
+	}*/
 }
 
 /*滚动条轨道*/
 ::-webkit-scrollbar-track {
 	// @include nd-color(1);
-	border: $nd-border;
-	border-radius: 5px;
+	// border: $nd-border;
+	// border-radius: 2px;
 	// background-color:$nd-color-grey7;
 }
 

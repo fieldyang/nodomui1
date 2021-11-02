@@ -2,42 +2,37 @@
 
 /*表格css*/
 .nd-grid {
+	height:100%;
+	width:100%;
 	box-sizing: border-box;
 	overflow: auto;
 	display: flex;
 	flex-direction: column;
-
-	table {
+	
+	.nd-grid-row {
 		width: 100%;
 		overflow: visible;
 		border-color: $nd-color6;
-		table-layout: fixed;
-		border-collapse: collapse;
-		tr {
-			width: 100%;
-			td,
-			th {
-				padding: $nd-padding;
-				overflow: hidden;
-				box-sizing: border-box;
-				text-overflow: ellipsis;
-				vertical-align: middle;
-				div {
-					overflow: hidden;
-					width: 100%;
-					text-overflow: ellipsis;
-					white-space: normal;
-					word-break: break-all;
-					display: inline-block;
-				}
-			}
+		// table-layout: fixed;
+		// border-collapse: collapse;
+		display:flex;
+		flex-direction:row;
+		.nd-grid-row-item{
+			padding: $nd-padding;
+			// overflow: hidden;
+			box-sizing: border-box;
+			text-overflow: ellipsis;
+			vertical-align: middle;
+			text-overflow: ellipsis;
+			white-space: normal;
+			word-break: break-all;
+			display: inline-block;
 		}
 	}
 
 	.nd-grid-body {
 		box-sizing: border-box;
-		margin-top: 1px;
-		tr {
+		.nd-grid-row {
 			/*左对齐*/
 			td.nd-grid-item-left {
 				justify-content: flex-start;
@@ -63,9 +58,11 @@
 	.nd-grid-head {
 		width: 100%;
 		box-sizing: border-box;
-		@include nd-color(1);
-		tr {
-			height: $nd-head-height;
+		// @include nd-color(1);
+		background-color:$nd-forecolor1;
+		// tr {
+		>div{
+			// height: $nd-head-height;
 			font-weight: bold;
 
 			/*排序容器*/
@@ -95,8 +92,9 @@
 	}
 
 	/*每行颜色交错*/
-	.nd-grid-rowalt tr:nth-child(even) {
+	.nd-grid-rowalt >div:nth-child(even) {
 		background-color: $nd-color10;
+		color:$nd-forecolor1;
 	}
 
 	.nd-grid-sub {
@@ -132,28 +130,57 @@
 		text-align: center;
 	}
 }
+
+.nd-grid-head-row-line{
+	.nd-grid-row{
+		border-top: $nd-border;
+		border-bottom: $nd-border;
+	}
+}
+
 /*行网格线*/
-.nd-grid-row-line {
-	border-top: $nd-border;
+.nd-grid-row-line .nd-grid-row{
 	border-bottom: $nd-border;
 }
 
-.nd-grid-column-line {
+.nd-grid-col-line {
 	border-left: $nd-border;
-	border-right: $nd-border;
+	.nd-grid-row-item{
+		border-right: $nd-border;
+	}
 }
 
-.nd-grid-top-line {
-	border-top: $nd-border;
+.nd-grid-head-all-line{
+	.nd-grid-row{
+		border-left: $nd-border;
+		border-top:$nd-border;
+		border-bottom:$nd-border;
+	}
+	
+	.nd-grid-row-item{
+		border-right: $nd-border;
+	}
 }
 
-.nd-grid-all-line {
-	border: $nd-border;
+.nd-grid-all-line{
+	border-left: $nd-border;
+	.nd-grid-row{
+		border-bottom: $nd-border;
+	}
+	.nd-grid-row-item{
+		border-right: $nd-border;
+	}
 }
 
 .nd-grid-fixed {
 	overflow: hidden;
 	.nd-grid-body {
-		overflow-y: auto;
+		overflow: auto;
 	}
+
+	.nd-grid-head{
+		width:inherit;
+		padding-right:$nd-scrollbar-width+1;
+	}
+	
 }

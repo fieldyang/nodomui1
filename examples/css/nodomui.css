@@ -75,7 +75,7 @@
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -235,20 +235,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -359,7 +354,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -519,20 +514,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -583,10 +573,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -662,15 +652,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -1286,7 +1276,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -1446,20 +1436,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -1648,7 +1633,7 @@ button,
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -1808,20 +1793,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -1954,7 +1934,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -2114,20 +2094,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -2238,7 +2213,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -2398,20 +2373,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -2462,10 +2432,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -2541,15 +2511,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -3051,7 +3021,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -3211,20 +3181,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -3497,7 +3462,7 @@ button,
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -3657,20 +3622,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -3818,7 +3778,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -3978,20 +3938,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -4102,7 +4057,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -4262,20 +4217,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -4326,10 +4276,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -4405,15 +4355,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -5053,7 +5003,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -5213,20 +5163,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -5337,7 +5282,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -5497,20 +5442,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -5561,10 +5501,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -5640,15 +5580,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -6075,57 +6015,48 @@ i {
 
 /*表格css*/
 .nd-grid {
+  height: 100%;
+  width: 100%;
   box-sizing: border-box;
   overflow: auto;
   display: flex;
   flex-direction: column;
   /*每行颜色交错*/
   /*居中*/ }
-  .nd-grid table {
+  .nd-grid .nd-grid-row {
     width: 100%;
     overflow: visible;
     border-color: #2b3260;
-    table-layout: fixed;
-    border-collapse: collapse; }
-    .nd-grid table tr {
-      width: 100%; }
-      .nd-grid table tr td,
-      .nd-grid table tr th {
-        padding: 10px;
-        overflow: hidden;
-        box-sizing: border-box;
-        text-overflow: ellipsis;
-        vertical-align: middle; }
-        .nd-grid table tr td div,
-        .nd-grid table tr th div {
-          overflow: hidden;
-          width: 100%;
-          text-overflow: ellipsis;
-          white-space: normal;
-          word-break: break-all;
-          display: inline-block; }
+    display: flex;
+    flex-direction: row; }
+    .nd-grid .nd-grid-row .nd-grid-row-item {
+      padding: 10px;
+      box-sizing: border-box;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+      text-overflow: ellipsis;
+      white-space: normal;
+      word-break: break-all;
+      display: inline-block; }
   .nd-grid .nd-grid-body {
-    box-sizing: border-box;
-    margin-top: 1px; }
-    .nd-grid .nd-grid-body tr {
+    box-sizing: border-box; }
+    .nd-grid .nd-grid-body .nd-grid-row {
       /*左对齐*/
       /*显示sub的图标旋转*/ }
-      .nd-grid .nd-grid-body tr td.nd-grid-item-left {
+      .nd-grid .nd-grid-body .nd-grid-row td.nd-grid-item-left {
         justify-content: flex-start; }
-      .nd-grid .nd-grid-body tr .nd-grid-sub-btn {
+      .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn {
         display: inline-block; }
-      .nd-grid .nd-grid-body tr .nd-grid-showsub {
+      .nd-grid .nd-grid-body .nd-grid-row .nd-grid-showsub {
         transform: rotate(90deg); }
   .nd-grid .nd-grid-head {
     width: 100%;
     box-sizing: border-box;
-    background-color: #0d1442;
-    color: #fff; }
-    .nd-grid .nd-grid-head tr {
-      height: 50px;
+    background-color: #fff; }
+    .nd-grid .nd-grid-head > div {
       font-weight: bold;
       /*排序容器*/ }
-      .nd-grid .nd-grid-head tr .nd-grid-sort {
+      .nd-grid .nd-grid-head > div .nd-grid-sort {
         display: inline-flex;
         flex-direction: column;
         align-items: center;
@@ -6136,11 +6067,12 @@ i {
         margin-left: 3px;
         /*升序箭头*/
         /*降序箭头*/ }
-        .nd-grid .nd-grid-head tr .nd-grid-sort > b:hover {
+        .nd-grid .nd-grid-head > div .nd-grid-sort > b:hover {
           color: #f0f0f0;
           cursor: pointer; }
-  .nd-grid .nd-grid-rowalt tr:nth-child(even) {
-    background-color: #212853; }
+  .nd-grid .nd-grid-rowalt > div:nth-child(even) {
+    background-color: #212853;
+    color: #fff; }
   .nd-grid .nd-grid-sub {
     background-color: #0d1442;
     color: #fff;
@@ -6166,25 +6098,40 @@ i {
   .nd-grid .nd-grid-td-center {
     text-align: center; }
 
-/*行网格线*/
-.nd-grid-row-line {
+.nd-grid-head-row-line .nd-grid-row {
   border-top: 1px solid #2b3260;
   border-bottom: 1px solid #2b3260; }
 
-.nd-grid-column-line {
+/*行网格线*/
+.nd-grid-row-line .nd-grid-row {
+  border-bottom: 1px solid #2b3260; }
+
+.nd-grid-col-line {
+  border-left: 1px solid #2b3260; }
+  .nd-grid-col-line .nd-grid-row-item {
+    border-right: 1px solid #2b3260; }
+
+.nd-grid-head-all-line .nd-grid-row {
   border-left: 1px solid #2b3260;
+  border-top: 1px solid #2b3260;
+  border-bottom: 1px solid #2b3260; }
+.nd-grid-head-all-line .nd-grid-row-item {
   border-right: 1px solid #2b3260; }
 
-.nd-grid-top-line {
-  border-top: 1px solid #2b3260; }
-
 .nd-grid-all-line {
-  border: 1px solid #2b3260; }
+  border-left: 1px solid #2b3260; }
+  .nd-grid-all-line .nd-grid-row {
+    border-bottom: 1px solid #2b3260; }
+  .nd-grid-all-line .nd-grid-row-item {
+    border-right: 1px solid #2b3260; }
 
 .nd-grid-fixed {
   overflow: hidden; }
   .nd-grid-fixed .nd-grid-body {
-    overflow-y: auto; }
+    overflow: auto; }
+  .nd-grid-fixed .nd-grid-head {
+    width: inherit;
+    padding-right: 11px; }
 
 /**
  * 基础文件
@@ -6262,7 +6209,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -6422,20 +6369,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -6587,7 +6529,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -6747,20 +6689,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -6871,7 +6808,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -7031,20 +6968,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -7095,10 +7027,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -7174,15 +7106,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -7706,7 +7638,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -7866,20 +7798,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -7990,7 +7917,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -8150,20 +8077,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -8214,10 +8136,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -8293,15 +8215,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -8803,7 +8725,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -8963,20 +8885,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -9190,7 +9107,7 @@ button,
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -9350,20 +9267,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -9474,7 +9386,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -9634,20 +9546,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -9698,10 +9605,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -9777,15 +9684,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -10347,7 +10254,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -10507,20 +10414,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -10631,7 +10533,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -10791,20 +10693,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -10855,10 +10752,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -10934,15 +10831,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -11444,7 +11341,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -11604,20 +11501,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -11840,7 +11732,7 @@ button,
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -12000,20 +11892,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -12171,7 +12058,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -12331,20 +12218,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -12493,7 +12375,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -12653,20 +12535,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -12777,7 +12654,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -12937,20 +12814,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -13001,10 +12873,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -13080,15 +12952,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -13605,7 +13477,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -13765,20 +13637,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -13889,7 +13756,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -14049,20 +13916,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -14113,10 +13975,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -14192,15 +14054,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -14772,7 +14634,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -14932,20 +14794,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -15056,7 +14913,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -15216,20 +15073,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -15280,10 +15132,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -15359,15 +15211,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -15914,7 +15766,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -16074,20 +15926,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -16198,7 +16045,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -16358,20 +16205,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -16422,10 +16264,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -16501,15 +16343,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -17054,7 +16896,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -17214,20 +17056,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -17372,7 +17209,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -17532,20 +17369,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -17670,7 +17502,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -17830,20 +17662,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -17954,7 +17781,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -18114,20 +17941,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -18178,10 +18000,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -18257,15 +18079,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -18810,7 +18632,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -18970,20 +18792,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -19105,7 +18922,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -19265,20 +19082,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -19389,7 +19201,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -19549,20 +19361,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -19613,10 +19420,10 @@ i {
 /*icon class*/
 /**必要箭头开始*/
 /*菜单，树右向箭头*/
-.nd-icon-right, .nd-grid .nd-grid-body tr .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
+.nd-icon-right, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon,
 .nd-menu .nd-menu-subct .nd-menu-nodect a.nd-menu-node .nd-menu-subicon {
   font-family: nd-iconfont; }
-  .nd-icon-right:before, .nd-grid .nd-grid-body tr .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
+  .nd-icon-right:before, .nd-grid .nd-grid-body .nd-grid-row .nd-grid-sub-btn:before, .nd-menu .nd-menu-subct .nd-menu-nodect .nd-menu-node .nd-menu-subicon:before {
     content: ""; }
 
 /*复选框，未选中*/
@@ -19692,15 +19499,15 @@ i {
     content: ""; }
 
 /*上箭头*/
-.nd-icon-arrow-up, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise {
+.nd-icon-arrow-up, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-raise:before {
+  .nd-icon-arrow-up:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-raise:before {
     content: ""; }
 
 /*下箭头*/
-.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down {
+.nd-icon-arrow-down, .nd-select .nd-select-inputct > b, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down {
   font-family: nd-iconfont; }
-  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head tr .nd-grid-sort .nd-grid-sort-down:before {
+  .nd-icon-arrow-down:before, .nd-select .nd-select-inputct > b:before, .nd-grid .nd-grid-head > div .nd-grid-sort .nd-grid-sort-down:before {
     content: ""; }
 
 /*左箭头*/
@@ -20222,7 +20029,7 @@ i {
 /*字体粗体*/
 /*zindex*/
 /*border样式*/
-.nd-item-hovercolor, .nd-grid .nd-grid-body tr:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
+.nd-item-hovercolor, .nd-grid .nd-grid-body .nd-grid-row:hover, .nd-list-horizontal .nd-list-item:hover, .nd-menu .nd-menu-subct .nd-menu-nodect:hover, .nd-tree .nd-tree-nodect .nd-tree-node:hover {
   background-color: rgba(0, 0, 0, 0.1); }
 
 /*item active*/
@@ -20382,20 +20189,15 @@ input {
   outline: none; }
 
 /**滚动条**/
-@media screen and (max-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px; } }
-@media screen and (min-width: 640px) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; } }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /*	@media screen and (min-width: 640px) {
+  		width: 10px;
+  		height: 10px;
+  	}*/ }
 
 /*滚动条轨道*/
-::-webkit-scrollbar-track {
-  border: 1px solid #2b3260;
-  border-radius: 5px; }
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
