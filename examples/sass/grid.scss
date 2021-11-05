@@ -17,7 +17,9 @@
 		// border-collapse: collapse;
 		display:flex;
 		flex-direction:row;
-		.nd-grid-row-item{
+		.nd-grid-row-item {
+			display:flex;
+			align-items: center;
 			padding: $nd-padding;
 			// overflow: hidden;
 			box-sizing: border-box;
@@ -26,28 +28,34 @@
 			text-overflow: ellipsis;
 			white-space: normal;
 			word-break: break-all;
-			display: inline-block;
+			// display: inline-block;
+		}
+
+		/*icon*/
+		.nd-grid-icon{
+			width:25px;
+			padding:0;
+			cursor: pointer;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		
+		/*左对齐*/
+		.nd-grid-align-left {
+			justify-content: flex-start;
+		}
+
+		/*居中*/
+		.nd-grid-align-center {
+			text-align: center;
 		}
 	}
 
 	.nd-grid-body {
 		box-sizing: border-box;
 		.nd-grid-row {
-			/*左对齐*/
-			td.nd-grid-item-left {
-				justify-content: flex-start;
-			}
-
-			.nd-grid-sub-btn {
-				display: inline-block;
-				@extend .nd-icon-right;
-			}
-
-			/*显示sub的图标旋转*/
-			.nd-grid-showsub {
-				transform: rotate(90deg);
-			}
-
 			&:hover {
 				// @extend .nd-hover-active;
 				@extend .nd-item-hovercolor;
@@ -56,15 +64,16 @@
 	}
 
 	.nd-grid-head {
-		width: 100%;
+		// width: 100%;
 		box-sizing: border-box;
 		// @include nd-color(1);
 		background-color:$nd-forecolor1;
-		// tr {
-		>div{
-			// height: $nd-head-height;
+		.nd-grid-row{
 			font-weight: bold;
-
+			// .nd-grid-row-item{
+			// 	padding:$nd-padding*2 $nd-padding;
+			// }
+			
 			/*排序容器*/
 			.nd-grid-sort {
 				display: inline-flex;
@@ -98,36 +107,22 @@
 	}
 
 	.nd-grid-sub {
-		@include nd-color(1);
+		// @include nd-color(1);
 		display: flex;
 		flex-direction: column;
 		padding: $nd-padding;
-		.nd-grid-sub-row {
-			display: flex;
-			min-height: 30px;
-			flex-direction: row;
-			align-items: center;
-			justify-content: space-around;
-			flex: 1;
-
-			.nd-grid-sub-item {
-				label {
-					margin-right: $nd-padding;
-					font-weight: bold;
-				}
-				flex: 1;
-				display: flex;
-				align-items: center;
-				.nd-grid-sub-content {
-					flex: 1;
-				}
-			}
-		}
+		border-bottom:$nd-border;
+		border-right:$nd-border;
+		box-sizing: border-box;
+		transition: all ease 0.2s;
 	}
 
-	/*居中*/
-	.nd-grid-td-center {
-		text-align: center;
+	.nd-grid-hidesub{
+		// display:none;
+		height:0;
+		overflow:hidden;
+		padding:0;
+		border:0;
 	}
 }
 
@@ -180,7 +175,7 @@
 
 	.nd-grid-head{
 		width:inherit;
-		padding-right:$nd-scrollbar-width+1;
+		padding-right:1px;
+		// padding-right:$nd-scrollbar-width;
 	}
-	
 }

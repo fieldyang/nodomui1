@@ -768,7 +768,7 @@ class Expression {
      */
     compile(exprStr) {
         //字符串，object key，有效命名(函数或字段)
-        const reg = /('[\s\S]*?')|("[\s\S]*?")|(`[\s\S]*?`)|([a-zA-Z$_][\w$]*\s*?:)|(\.?[a-zA-Z$_][\w$]*(\.[a-zA-Z$_][\w$]*)*(\s*[\[\(](\s*\))?)?)/g;
+        const reg = /('[\s\S]*?')|("[\s\S]*?")|(`[\s\S]*?`)|([a-zA-Z$_][\w$]*\s*?:)|((\.{3}|\.)?[a-zA-Z$_][\w$]*(\.[a-zA-Z$_][\w$]*)*(\s*[\[\(](\s*\))?)?)/g;
         let r;
         let retS = '';
         let index = 0; //当前位置
@@ -788,12 +788,17 @@ class Expression {
                 else if (lch === '(' || lch === ')') { //函数，非内部函数
                     retS += handleFunc(s);
                 }
-                else { //字段
-                    if (s.startsWith('this.') || Util.isKeyWord(s) || s[0] === '.') { //非model属性
+                else { //字段 this $model .field等不做处理
+                    if (s.startsWith('this.') || s === '$model' || s.startsWith('$model.') || Util.isKeyWord(s) || (s[0] === '.' && s[1] !== '.')) { //非model属性
                         retS += s;
                     }
                     else { //model属性
-                        retS += '$model.' + s;
+                        let s1 = '';
+                        if (s.startsWith('...')) { // ...属性名
+                            s1 = '...';
+                            s = s.substr(3);
+                        }
+                        retS += s1 + '$model.' + s;
                         //存在‘.’，则变量不全在在当前模型中
                         if (s.indexOf('.') !== -1) {
                             this.allModelField = false;
@@ -902,7 +907,6 @@ class CssManager {
         if (dom.parent.tagName.toLowerCase() !== 'style') {
             return false;
         }
-        console.log(dom, dom.parent);
         //scope=this，在模块根节点添加 限定 class
         CssManager.addRules(module, dom.textContent, dom.parent.getProp('scope') === 'this' ? '.' + this.cssPreName + module.id : undefined);
         return true;
@@ -1913,7 +1917,7 @@ class Renderer {
         }
     }
     /**
-     * 渲染到html element
+     * 渲染为html element
      * @param module 	        模块
      * @param src               渲染节点
      * @param parentEl 	        父html
@@ -1971,10 +1975,8 @@ class Renderer {
             if (dom.subModuleId) {
                 let m = ModuleFactory.get(dom.subModuleId);
                 if (m) {
-                    m.setContainer(el);
+                    m.setContainer(el, true);
                 }
-                //添加到父模块
-                module.addChild(m.id);
             }
             //设置属性
             if (dom.props) {
@@ -1985,7 +1987,7 @@ class Renderer {
                 }
             }
             //如果存储node，则不需要key
-            // el.setAttribute('key', dom.key);
+            el.setAttribute('key', dom.key);
             //把el引用与key关系存放到cache中
             module.saveNode(dom.key, el);
             //asset
@@ -3556,7 +3558,7 @@ class Compiler {
                     }
                 }
                 else {
-                    throw new NError('wrongTempate');
+                    throw new NError('wrongTemplate');
                 }
             }
             else { //标签头
@@ -4418,7 +4420,7 @@ class Model {
                 if (src[key] === value) {
                     return true;
                 }
-                //不处理原型属性 
+                //不处理原型属性和构造器 
                 if (['__proto__', 'constructor'].includes(key)) {
                     return true;
                 }
@@ -4958,14 +4960,34 @@ class Module {
      */
     doFirstRender() {
         this.doModuleEvent('onBeforeFirstRender');
-        this.dontAddToRender = false;
         //渲染树
         this.renderTree = Renderer.renderDom(this, this.originTree, this.model);
         this.doModuleEvent('onBeforeFirstRenderToHTML');
-        //清空子元素
-        Util.empty(this.container);
-        //渲染到html
-        Renderer.renderToHtml(this, this.renderTree, this.container, true);
+        //渲染为html element
+        let el = Renderer.renderToHtml(this, this.renderTree, null, true);
+        if (this.replaceContainer) { //替换
+            ['style', 'class'].forEach(item => {
+                let c = this.container.getAttribute(item);
+                if (!c) {
+                    return;
+                }
+                c = c.trim();
+                let c1 = el.getAttribute(item) || '';
+                if (item === 'style') {
+                    c += (c.endsWith(';') ? '' : ';') + c1;
+                }
+                else {
+                    c += ' ' + c1;
+                }
+                el.setAttribute(item, c);
+            });
+            Util.replaceNode(this.container, el);
+        }
+        else {
+            //清空子元素
+            Util.empty(this.container);
+            this.container.appendChild(el);
+        }
         //执行首次渲染后事件
         this.doModuleEvent('onFirstRender');
     }
@@ -5067,10 +5089,12 @@ class Module {
     }
     /**
      * 设置渲染容器
-     * @param el    容器
+     * @param el        容器
+     * @param replace   渲染时是否直接替换container
      */
-    setContainer(el) {
+    setContainer(el, replace) {
         this.container = el;
+        this.replaceContainer = replace;
     }
     /**
      * 调用方法
@@ -5127,27 +5151,42 @@ class Module {
      */
     setProps(props) {
         let change = false;
+        //保留数据
+        let dataObj = props.$data;
+        //属性对比不对data进行对比，删除数据属性
+        delete props.$data;
         if (!this.props) {
             change = true;
         }
         else {
             const keys = Object.getOwnPropertyNames(props);
-            let len1 = keys.indexOf('$data') === -1 ? keys.length : keys.length - 1;
+            let len1 = keys.length;
             const keys1 = this.props ? Object.getOwnPropertyNames(this.props) : [];
-            let len2 = keys.indexOf('$data') === -1 ? keys1.length : keys1.length - 1;
+            let len2 = keys1.length;
             if (len1 !== len2) {
                 change = true;
             }
             else {
                 for (let k of keys) {
-                    if (k === '$data') {
-                        continue;
-                    }
                     // object 默认改变
                     if (props[k] !== this.props[k] || typeof (props[k]) === 'object') {
                         change = true;
                         break;
                     }
+                }
+            }
+        }
+        //props数据复制到模块model
+        if (dataObj) {
+            for (let d in dataObj) {
+                let o = dataObj[d];
+                //如果为对象，需要绑定到模块
+                if (typeof o === 'object') {
+                    ModelManager.bindToModule(o, this);
+                    this.model[d] = o;
+                }
+                else if (!this.props || this.model[d] === undefined) { //非对象，值不存在，或第一次，避免覆盖模块修改的数据
+                    this.model[d] = o;
                 }
             }
         }
@@ -5350,6 +5389,12 @@ DirectiveElementManager.add([MODULE, FOR, IF, RECUR, ELSE, ELSEIF, ENDIF, SLOT])
             //保留modelId
             dom.setParam(module, 'moduleId', mid);
             module.addChild(m);
+            //共享当前dom的model给子模块
+            if (dom.hasProp('useDomModel')) {
+                m.model = dom.model;
+                //绑定到子模块，共享update
+                ModelManager.bindToModule(m.model, m);
+            }
         }
         //保存到dom上，提升渲染性能
         dom.subModuleId = mid;
@@ -5396,14 +5441,22 @@ DirectiveElementManager.add([MODULE, FOR, IF, RECUR, ELSE, ELSEIF, ENDIF, SLOT])
         if (!Util.isArray(rows) || rows.length === 0) {
             return false;
         }
+        //索引名
+        const idxName = src.getProp('$index');
         const parent = dom.parent;
         //禁用该指令
         this.disabled = true;
         for (let i = 0; i < rows.length; i++) {
-            rows[i].$index = i;
+            if (idxName) {
+                rows[i][idxName] = i;
+            }
             //渲染一次-1，所以需要+1
             src.staticNum++;
-            Renderer.renderDom(module, src, rows[i], parent, rows[i].$key);
+            let d = Renderer.renderDom(module, src, rows[i], parent, rows[i].$key);
+            //删除$index属性
+            if (idxName) {
+                d.delProp('$index');
+            }
         }
         //启用该指令
         this.disabled = false;
@@ -5816,4 +5869,3 @@ EventManager.regist('swipeup', EventManager.get('swipe'));
 EventManager.regist('swipedown', EventManager.get('swipe'));
 
 export { Compiler, CssManager, DiffTool, Directive, DirectiveElement, DirectiveElementManager, DirectiveManager, DirectiveType, EventManager, Expression, GlobalCache, Model, ModelManager, Module, ModuleFactory, NCache, NError, NEvent, NFactory, NodomMessage, NodomMessage_en, NodomMessage_zh, Renderer, Route, Router, Scheduler, Util, VirtualDom, createDirective, createRoute, nodom, registModule, request };
-//# sourceMappingURL=nodom.js.map

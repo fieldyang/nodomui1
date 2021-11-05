@@ -36,7 +36,7 @@ export class UIAccordionItem extends Module{
             <div class='nd-accordion-item'>
                 <div class='nd-accordion-title' e-click='clickItem'>
                     ${props.title}
-                    <b class={{$open?'nd-accordion-icon nd-accordion-open':'nd-accordion-icon'}} />
+                    <b class={{$open?'nd-expand-icon nd-expand-open':'nd-expand-icon'}} />
                 </div>
                 <div class='nd-accordion-content' class={{$open?'nd-accordion-content':'nd-accordion-content  nd-accordion-hide'}}>
                     <slot></slot>

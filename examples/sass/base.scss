@@ -477,10 +477,10 @@ $nd-scrollbar-width:10px;
 
 /*滚动条轨道*/
 ::-webkit-scrollbar-track {
-	// @include nd-color(1);
-	// border: $nd-border;
+	@include nd-color(1);
+	border: $nd-border;
 	// border-radius: 2px;
-	// background-color:$nd-color-grey7;
+	background-color:$nd-color-grey7;
 }
 
 /*定义滑块 内阴影+圆角*/
@@ -532,3 +532,13 @@ i{
 // body {
 // 	color: $nd-color-fore;
 // }
+
+/*展开箭头*/
+.nd-expand-icon {
+	@extend .nd-icon-arrow-right;
+	transition: all ease 0.3s;
+}
+
+.nd-expand-open {
+	transform:  translate(1px,1px) rotate(90deg);
+}
