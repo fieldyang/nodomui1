@@ -106,18 +106,16 @@
 		color:$nd-forecolor1;
 	}
 
-	.nd-grid-sub {
+	.nd-grid-expand {
 		// @include nd-color(1);
 		display: flex;
 		flex-direction: column;
 		padding: $nd-padding;
-		border-bottom:$nd-border;
-		border-right:$nd-border;
 		box-sizing: border-box;
 		transition: all ease 0.2s;
 	}
 
-	.nd-grid-hidesub{
+	.nd-grid-expand-hide{
 		// display:none;
 		height:0;
 		overflow:hidden;
@@ -125,57 +123,66 @@
 		border:0;
 	}
 }
-
+/*
 .nd-grid-head-row-line{
 	.nd-grid-row{
 		border-top: $nd-border;
 		border-bottom: $nd-border;
 	}
-}
-
-/*行网格线*/
-.nd-grid-row-line .nd-grid-row{
-	border-bottom: $nd-border;
-}
-
-.nd-grid-col-line {
-	border-left: $nd-border;
-	.nd-grid-row-item{
-		border-right: $nd-border;
-	}
-}
-
-.nd-grid-head-all-line{
-	.nd-grid-row{
-		border-left: $nd-border;
-		border-top:$nd-border;
+	.nd-grid-expand{
 		border-bottom:$nd-border;
 	}
-	
-	.nd-grid-row-item{
-		border-right: $nd-border;
-	}
-}
+}*/
 
-.nd-grid-all-line{
-	border-left: $nd-border;
+/*行网格线*/
+.nd-grid-row-line{
 	.nd-grid-row{
 		border-bottom: $nd-border;
 	}
-	.nd-grid-row-item{
-		border-right: $nd-border;
+
+	.nd-grid-head{
+		border-top: $nd-border; 
+		border-bottom:$nd-border;
+		.nd-grid-row{
+			border-bottom:0;
+		}
+	}
+
+	.nd-grid-expand{
+		border-bottom:$nd-border;
 	}
 }
 
-.nd-grid-fixed {
+/*列网格线*/
+.nd-grid-col-line{
+	.nd-grid-head{
+		border-right:$nd-border;
+	}
+	.nd-grid-body{
+		border-right:$nd-border;
+	}
+	.nd-grid-row-item{
+		border-left: $nd-border;
+	}
+	.nd-grid-expand{
+		border-left:$nd-border;
+	}
+}
+
+/*行列网格线*/
+.nd-grid-all-line{
+	@extend .nd-grid-row-line;
+	@extend .nd-grid-col-line;
+}
+
+/*固定头*/
+.nd-grid-fixhead {
 	overflow: hidden;
 	.nd-grid-body {
 		overflow: auto;
 	}
-
 	.nd-grid-head{
 		width:inherit;
-		padding-right:1px;
-		// padding-right:$nd-scrollbar-width;
+		padding-right:$nd-scrollbar-width;
 	}
 }
