@@ -1,5 +1,5 @@
-// import { Renderer,Module,registModule,VirtualDom,ModelManager,NEvent,Expression } from "../../../examples/js/nodom.js";
-import { registModule, Renderer, Module ,VirtualDom,NEvent ,Expression} from "../../nodom3.3";
+// import { Renderer,Module,registModule,VirtualDom,ModelManager,NEvent,Expression,Compiler } from "../../../examples/js/nodom.js";
+import { registModule, Renderer, Module ,VirtualDom,NEvent ,Expression,  Compiler} from "../../nodom3.3";
 
 /**
  * grid 插件
@@ -18,7 +18,7 @@ export class UIGrid extends Module{
     private rowAlt:boolean;
  
     /**
-     * 网格线 row column both
+     * 网格线 rows cols both
      */
     private gridLine:string;
  
@@ -31,6 +31,11 @@ export class UIGrid extends Module{
      * 列对象
      */
     private columns:UIGridCol[] = [];
+
+    /**
+     * 表格宽度
+     */
+    private width:number = 0;
 
     /**
      * 表头选中状态 0未选中 1选中 2部分选中
@@ -50,6 +55,8 @@ export class UIGrid extends Module{
                             <b class={{__expanded?'nd-expand-icon nd-expand-open':'nd-expand-icon'}} e-click='clickExpand'/>
                         </div>`;
             expandHeadStr = `<div class='nd-grid-row-item nd-grid-icon'></div>`;
+            //增加grid宽度
+            this.width += 25;
         }
         if(props.checkbox === 'true'){
             checkStr = `<div class='nd-grid-row-item nd-grid-icon'>
@@ -57,24 +64,28 @@ export class UIGrid extends Module{
                         </div>`;
             checkHeadStr = `<div class='nd-grid-row-item nd-grid-icon'>
                         <b class={{genCheckCls(this.headCheck)}} e-click='clickHeadCheck'/>
-                    </div>`;            
+                    </div>`;
+            //增加grid宽度
+            this.width += 25;            
         }
         return `
             <div class={{genGridCls()}}>
-                <div class={{genHeadCls()}}>
+                <div class={{genHeadCls()}} style={{genWidthStyle()}}>
                     <div class='nd-grid-row'>
                         ${expandHeadStr}
                         ${checkHeadStr}
                     </div>
                 </div>
-                <div class={{genBodyCls()}}>
-                    <for cond={{gridData}}>
-                        <div class='nd-grid-row'>
-                            ${expandStr}
-                            ${checkStr}
-                        </div>
-                        <slot name='expandrow' x-show={{__expanded}} class='nd-grid-expand' innerRender />
-                    </for>
+                <div class='nd-grid-bodyct' e-scroll='scrollBody'>
+                    <div class={{genBodyCls()}} style={{genWidthStyle()}}>
+                        <for cond={{gridData}} class='nd-grid-rowct'>
+                            <div class='nd-grid-row'>
+                                ${expandStr}
+                                ${checkStr}
+                            </div>
+                            <slot name='expandrow' x-show={{__expanded}} class='nd-grid-expand' innerRender />
+                        </for>
+                    </div>
                 </div>
                 <slot></slot>
             </div>
@@ -82,22 +93,10 @@ export class UIGrid extends Module{
     }
 
     /**
-     * 产生head css
-     * @returns css串
+     * 生产grid class
+     * @returns     grid class
      */
-    genHeadCls(){
-        let arr = ['nd-grid-head'];
-        // if(this.gridLine === 'rows'){
-        //     arr.push('nd-grid-head-row-line')
-        // }else if(this.gridLine === 'cols'){
-        //     arr.push('nd-grid-col-line');
-        // }else if(this.gridLine === 'both'){
-        //     arr.push('nd-grid-head-all-line');
-        // }
-        return arr.join(' ');
-    }
-
-    genGridCls(){
+    genGridCls():string{
         let arr = ['nd-grid'];
         if(this.fixHead){
             arr.push("nd-grid-fixhead");
@@ -109,8 +108,27 @@ export class UIGrid extends Module{
         }else if(this.gridLine === 'both'){
             arr.push('nd-grid-all-line');
         }
+
         return arr.join(' ');
     }
+
+    /**
+     * 产生grid width style，用于body和head
+     * @returns style样式
+     */
+    genWidthStyle(){
+        return this.width>0?'width:' + this.width + 'px':undefined;
+    }
+
+    /**
+     * 产生head css
+     * @returns css串
+     */
+    genHeadCls(){
+        let arr = ['nd-grid-head'];
+        return arr.join(' ');
+    }
+
     /**
      * 产生body css
      * @returns css串
@@ -120,13 +138,6 @@ export class UIGrid extends Module{
         if(this.rowAlt){
             arr.push("nd-grid-rowalt");
         }
-        // if(this.gridLine === 'rows'){
-        //     arr.push('nd-grid-row-line')
-        // }else if(this.gridLine === 'cols'){
-        //     arr.push('nd-grid-col-line');
-        // }else if(this.gridLine === 'both'){
-        //     arr.push('nd-grid-all-line');
-        // }
         return arr.join(' ');
     }
 
@@ -158,8 +169,10 @@ export class UIGrid extends Module{
         }
         this.columns.push(col);
 
+        //头部行容器
         let header = this.originTree.children[0].children[0];
-        let body = this.originTree.children[1].children[0].children[0];
+        //body行容器
+        let body = this.originTree.children[1].children[0].children[0].children[0];
         //表头
         let th = new VirtualDom('div');
         th.setProp('class','nd-grid-row-item');
@@ -190,7 +203,6 @@ export class UIGrid extends Module{
             b.addEvent(new NEvent('click','downSort'));
             b.setParam(this,'__field',props.field);
             sort.add(b);
-
             th.add(sort);    
         }
         
@@ -201,17 +213,28 @@ export class UIGrid extends Module{
         th.setProp('class','nd-grid-row-item');
         if(props.width){
             th.setProp('style','width:' + props.width + 'px');
+            if(this.width >=0 ){
+                this.width += parseInt(props.width);
+            }
         }else{
             th.setProp('style','flex:1');
+            //flex 不计算宽度
+            this.width = -1;
         }
-        txt = new VirtualDom();
-        txt.expressions = [new Expression(this,props.field)];
-        th.add(txt);
+        if(props.template){ //处理tempalte
+            th.add(new Compiler(this).compile(props.template));
+        }else{
+            txt = new VirtualDom();
+            txt.expressions = [new Expression(this,props.field)];    
+            th.add(txt);
+        }
+        
         body.add(th);
+        
         //启动父模块渲染
         setTimeout(()=>{
             Renderer.add(this);
-        },0)
+        },0);
     }
 
     /**
@@ -257,38 +280,46 @@ export class UIGrid extends Module{
 
     /**
      * 升序排序
-     * @param model 
-     * @param dom
+     * @param model 对应model
+     * @param dom   虚拟dom节点
      */
     raiseSort(model,dom){
-        const field = dom.getParam[this,'__field'];
+        const field = dom.getParam(this,'__field');
         this.model['gridData'].sort((a,b)=>{
-            if(a[field]>b[field]){
-                return 1;
-            }
-            return -1;
+            return a[field]>b[field]?1:-1;
         });
     }
 
     /**
      * 降序
-     * @param model 
-     * @param dom
+     * @param model 绑定model
+     * @param dom   虚拟dom节点
      */
     downSort(model,dom){
-        const field = dom.getParam[this,'__field'];
-        console.log(field);
+        const field = dom.getParam(this,'__field');
         this.model['gridData'].sort((a,b)=>{
-            if(a[field]<b[field]){
-                return 1;
-            }
-            return -1;
+            return a[field]<b[field]?1:-1;
         })
     }
-}
 
-//注册模块
-registModule(UIGrid,'ui-grid');
+    /**
+     * 滚动表格body
+     * @param model 
+     * @param dom 
+     * @param evObj 
+     * @param e 
+     */
+    scrollBody(model,dom,evObj,e){
+        if(!this.fixHead){
+            return;
+        }
+        let el = e.currentTarget;
+        let left  = el.scrollLeft;
+        (<HTMLElement>this.getNode(this.originTree.children[0].key)).style.transform = 'translateX(-' + left + 'px)';
+    }
+
+    
+}
 
 /**
  * grid colunn
@@ -303,7 +334,11 @@ export class UIGridCol extends Module{
         let pm:UIGrid = <UIGrid>this.getParent();
         this.props = props
         pm.addColumn(this);
-        return null;
+        return `
+            <div>
+                <slot>{{${props.field}}}</slot>
+            </div>
+        `;
     }
 }
 
@@ -317,7 +352,12 @@ export class UIGridExpand extends Module{
     }
 }
 
-//注册模块
-registModule(UIGridCol,'ui-grid-col');
+export class UIGridTemplate extends Module{
+    
+}
 
+//注册模块
+registModule(UIGrid,'ui-grid');
+registModule(UIGridCol,'ui-grid-col');
 registModule(UIGridExpand,'ui-grid-expand');
+// registModule(UIGridTemplate,'template');

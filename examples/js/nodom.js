@@ -1987,7 +1987,7 @@ class Renderer {
                 }
             }
             //如果存储node，则不需要key
-            el.setAttribute('key', dom.key);
+            // el.setAttribute('key', dom.key);
             //把el引用与key关系存放到cache中
             module.saveNode(dom.key, el);
             //asset
@@ -3487,179 +3487,127 @@ class Compiler {
      * @returns
      */
     compileTemplate(srcStr) {
+        const me = this;
         // 清理comment
-        let regExp = /\<\!\-\-[\s\S]*?\-\-\>/g;
+        const regExp = /\<\!\-\-[\s\S]*?\-\-\>/g;
         srcStr = srcStr.replace(regExp, '');
-        //不可见字符正则式
-        const regSpace = /^[\s\n\r\t\v]+$/;
-        // 1 识别标签
-        regExp = /(?<!{{[^}}]*)(?:<(\/?)\s*?([a-zA-Z][a-zA-Z0-9-_]*)([\s\S]*?)(\/?)(?<!=)>)(?![^{{]*}})/g;
-        let st = 0;
-        //标签串数组,含开始和结束标签
-        let tagStack = [];
-        //独立文本串数组，对应需要的标签串前面
-        let textStack = [];
+        // 正则式分解标签和属性
+        const regTag = /((?<!\\)'[\s\S]*?(?<!\\)')|((?<!\\)"[\s\S]*?(?<!\\)")|((?<!\\)`[\s\S]*?(?<!\\)`)|({{[\S\s]*?\}{0,2}\s*}})|([\w$-]+(\s*=)?)|(<\s*[a-zA-Z][a-zA-Z0-9-_]*)|(\/?>)|(<\/\s*[a-zA-Z][a-zA-Z0-9-_]*>)/g;
+        //dom数组
+        let domArr = [];
+        //已闭合的tag，与domArr对应
+        let closedTag = [];
+        //标签结束的index
+        let lastIndex = 0;
+        //属性值
+        let propName;
+        //属性名正则式
+        const propReg = /^[a-zA-Z_$][$-\w]*?\s*?=?$/;
         //pre标签标志
         let isPreTag = false;
+        //当前dom节点
+        let dom;
+        //正则式匹配结果
         let r;
-        while ((r = regExp.exec(srcStr)) !== null) {
-            tagStack.push(r[0]);
-            //处理标签之间的文本
-            let tmp = '';
-            if (st < r.index - 1) {
-                tmp = srcStr.substring(st, r.index);
-                //全为不可见字符，则保存空字符串
-                if (!isPreTag && regSpace.test(tmp)) {
-                    tmp = '';
+        while ((r = regTag.exec(srcStr)) !== null) {
+            let re = r[0];
+            if (re[0] === '<') { //标签
+                //处理文本
+                let txt = this.handleText(srcStr.substring(lastIndex, r.index), isPreTag);
+                if (txt) {
+                    domArr.push(txt);
+                    closedTag.push(false);
+                }
+                if (re[1] === '/') { //标签结束
+                    finishTag(re);
+                }
+                else { //标签开始
+                    let tagName = re.substr(1).trim();
+                    isPreTag = (tagName.toLowerCase() === 'pre');
+                    //新建dom节点
+                    dom = new VirtualDom(tagName, this.genKey());
+                    domArr.push(dom);
+                    closedTag.push(false);
                 }
             }
-            textStack.push(tmp);
-            st = regExp.lastIndex;
-        }
-        // 标签名数组
-        let tagNames = [];
-        // 标签对象数组
-        let tagObjs = [];
-        // 根节点
-        let root;
-        tagStack.forEach((tag, ii) => {
-            //开始标签名
-            let stg;
-            if (tag.startsWith('</')) { //结束标签
-                let etg = tag.substring(2, tag.length - 1).trim();
-                let chds = [];
-                //找到对应此结束标签的开始标签
-                for (let i = ii; tagNames.length > 0; i--) {
-                    // 结束标签前面的非空文本节点作为孩子
-                    if (i >= 0 && textStack[i] !== '') {
-                        chds.push(this.handleText(textStack[i]));
-                        // 文本已使用，置为空
-                        textStack[i] = '';
+            else if (re === '>') { //标签头结束
+                finishTagHead();
+            }
+            else if (re === '/>') { //标签结束
+                finishTag();
+            }
+            else if (dom) { //属性
+                if (propReg.test(re)) {
+                    if (propName) { //propName=无值 情况，当无值处理
+                        handleProp();
                     }
-                    if ((stg = tagNames.pop()) === etg) {
+                    if (re.endsWith('=')) { //属性带=，表示后续可能有值
+                        propName = re.substring(0, re.length - 1).trim();
+                    }
+                    else { //只有属性，无属性值
+                        propName = re;
+                        handleProp();
+                    }
+                }
+                else if (propName) { //属性值
+                    handleProp(re);
+                }
+            }
+        }
+        return domArr[0];
+        /**
+         * 标签结束
+         * @param ftag      结束标签
+         */
+        function finishTag(ftag) {
+            if (ftag) {
+                let tag = ftag.substring(2, ftag.length - 1).toLowerCase();
+                let finded = false;
+                //反向查找
+                for (let i = domArr.length - 1; i >= 0; i--) {
+                    if (!closedTag[i] && domArr[i].tagName && domArr[i].tagName.toLowerCase() === tag) {
+                        domArr[i].children = domArr.slice(i + 1);
+                        //删除后续节点
+                        domArr.splice(i + 1);
+                        //标注该节点已闭合
+                        closedTag.splice(i + 1);
+                        finded = true;
                         break;
                     }
-                    //当前节点及其子节点同时作为孩子节点
-                    let tobj = tagObjs.pop();
-                    chds = (tobj.children || []).concat(chds);
-                    chds.unshift(tobj);
                 }
-                //找到节点
-                if (stg === etg) {
-                    // 添加到父节点
-                    let po = tagObjs.pop();
-                    po.children = (po.children || []).concat(chds);
-                    this.handleSlot(po);
-                    if (tagObjs.length > 0) {
-                        tagObjs[tagObjs.length - 1].add(po);
-                    }
-                    if (isPreTag && etg === 'pre') {
-                        isPreTag = false;
-                    }
-                }
-                else {
+                if (!finded) {
                     throw new NError('wrongTemplate');
                 }
             }
-            else { //标签头
-                //去掉标签前后< >
-                let tmpS = tag.endsWith('\/>') ? tag.substring(1, tag.length - 2) : tag.substring(1, tag.length - 1);
-                //处理标签头，返回dom节点和原始标签名
-                const [dom, tagName] = this.handleTag(tmpS.trim());
-                //设置pre标签标志
-                if (tagName === 'pre') {
-                    isPreTag = true;
-                }
-                //前一个文本节点存在，则作为前一个节点的孩子
-                if (ii > 0 && textStack[ii] !== '') {
-                    tagObjs[tagObjs.length - 1].add(this.handleText(textStack[ii]));
-                    textStack[ii] = '';
-                }
-                if (!tag.endsWith('\/>')) { // 非自闭合
-                    //标签头入栈
-                    tagNames.push(tagName);
-                    tagObjs.push(dom);
-                }
-                else { //自闭合，直接作为前一个的孩子节点
-                    if (tagObjs.length > 0) {
-                        if (tagObjs[tagObjs.length - 1].children) {
-                            tagObjs[tagObjs.length - 1].children.push(dom);
-                        }
-                        else {
-                            tagObjs[tagObjs.length - 1].children = [dom];
-                        }
-                    }
-                }
-                //设置根节点
-                if (!root) {
-                    root = dom;
-                }
-            }
-        });
-        if (tagNames.length > 0) {
-            throw new NError('wrongTempate');
+            //设置标签关闭
+            let ele = domArr[domArr.length - 1];
+            closedTag[closedTag.length - 1] = true;
+            me.postHandleNode(ele);
+            ele.sortDirective();
+            me.handleSlot(ele);
+            dom = undefined;
+            propName = undefined;
+            lastIndex = regTag.lastIndex;
+            // ele.allModelField = allModelField;    
         }
-        return root;
-    }
-    /**
-     * 处理标签属性
-     * @param tagStr    标签串
-     * @returns         [虚拟dom节点,原始标签名]
-     */
-    handleTag(tagStr) {
-        const me = this;
-        let ele;
-        //字符串和表达式替换
-        const reg = /('[\s\S]*?')|("[\s\S]*?")|(`[\s\S]*?`)|({{[\S\s]*?\}{0,2}\s*}})|([\w$-]+(\s*=)?)/g;
-        let pName;
-        //标签原始名
-        let tagName;
-        let startValue;
-        let r;
-        let allModelField = true;
-        //属性名正则式
-        const regName = /[a-zA-Z$_]\S*/;
-        while ((r = reg.exec(tagStr)) !== null) {
-            let s = r[0];
-            if (regName.test(s)) { //属性名
-                if (!tagName) {
-                    tagName = s;
-                    ele = new VirtualDom(tagName, me.genKey());
-                }
-                else if (s.endsWith('=')) { //带等号
-                    if (pName) { //前一个属性名存在，设置空值
-                        setValue();
-                    }
-                    pName = s.substring(0, s.length - 1).trim();
-                    startValue = true;
-                }
-                else if (!pName) { //不带等号
-                    pName = s;
-                }
-                else if (startValue) { //属性名存在，设置属性值
-                    setValue(s);
-                }
-            }
-            else { //属性值
-                if (pName && startValue) {
-                    setValue(s);
-                }
-            }
-        }
-        //存在空属性
-        if (pName) {
-            setValue();
-        }
-        //后置处理
-        this.postHandleNode(ele);
-        ele.sortDirective();
-        ele.allModelField = allModelField;
-        return [ele, tagName];
         /**
-         * 设置属性值
+         * 标签头结束
+         */
+        function finishTagHead() {
+            if (dom) {
+                lastIndex = regTag.lastIndex;
+            }
+            dom = undefined;
+            propName = undefined;
+        }
+        /**
+         * 处理属性
          * @param value     属性值
          */
-        function setValue(value) {
+        function handleProp(value) {
+            if (!dom || !propName) {
+                return;
+            }
             if (value) {
                 let r;
                 //去掉字符串两端
@@ -3668,23 +3616,21 @@ class Compiler {
                 }
                 //表达式编译
                 if (/^\{\{[\S\s]*\}\}$/.test(value)) {
-                    value = me.compileExpression(value, ele)[0];
-                    allModelField = value.allModelField;
+                    value = me.compileExpression(value, dom)[0];
                 }
             }
             //指令
-            if (pName.startsWith("x-")) {
+            if (propName.startsWith("x-")) {
                 //不排序
-                ele.addDirective(new Directive(pName.substr(2), value));
+                dom.addDirective(new Directive(propName.substr(2), value));
             }
-            else if (pName.startsWith("e-")) { //事件
-                ele.addEvent(new NEvent(pName.substr(2), value));
+            else if (propName.startsWith("e-")) { //事件
+                dom.addEvent(new NEvent(propName.substr(2), value));
             }
             else { //普通属性
-                ele.setProp(pName, value);
+                dom.setProp(propName, value);
             }
-            pName = undefined;
-            startValue = false;
+            propName = undefined;
         }
     }
     /**
@@ -3692,38 +3638,51 @@ class Compiler {
      * @param dom   dom节点
      */
     handleSlot(dom) {
-        if (dom.hasDirective('module')) { //po为子模块，其所有子模块判断是否加上slot
-            let slotCt;
-            for (let j = 0; j < dom.children.length; j++) {
-                let c = dom.children[j];
-                if (c.hasDirective('slot')) { //带slot的不处理
-                    continue;
-                }
-                if (!slotCt) { //第一个直接被slotCt替换
-                    slotCt = new VirtualDom('div', this.genKey());
-                    slotCt.addDirective(new Directive('slot', null));
-                    //当前位置，用slot替代
-                    dom.children.splice(j, 1, slotCt);
-                }
-                else {
-                    //直接删除
-                    dom.children.splice(j--, 1);
-                }
-                slotCt.add(c);
+        if (!dom.children || dom.children.length === 0 || !dom.hasDirective('module')) {
+            return;
+        }
+        let slotCt;
+        for (let j = 0; j < dom.children.length; j++) {
+            let c = dom.children[j];
+            if (c.hasDirective('slot')) { //带slot的不处理
+                continue;
             }
+            if (!slotCt) { //第一个直接被slotCt替换
+                slotCt = new VirtualDom('div', this.genKey());
+                slotCt.addDirective(new Directive('slot', null));
+                //当前位置，用slot替代
+                dom.children.splice(j, 1, slotCt);
+            }
+            else {
+                //直接删除
+                dom.children.splice(j--, 1);
+            }
+            slotCt.add(c);
         }
     }
     /**
      * 编译txt为文本节点
      * @param txt 文本串
+     * @param isPre     是否
      */
-    handleText(txt) {
-        let ele = new VirtualDom(null, this.genKey());
-        txt = this.preHandleText(txt);
-        if (/\{\{[\s\S]+\}\}/.test(txt)) { //检查是否含有表达式
-            ele.expressions = this.compileExpression(txt, ele);
+    handleText(txt, isPre) {
+        let ele;
+        if (!isPre) {
+            txt = txt.trim();
+            if (txt === '') {
+                return;
+            }
+            ele = new VirtualDom(null, this.genKey());
+            txt = this.preHandleText(txt);
+            if (/\{\{[\s\S]+\}\}/.test(txt)) { //检查是否含有表达式
+                ele.expressions = this.compileExpression(txt, ele);
+            }
+            else {
+                ele.textContent = txt;
+            }
         }
         else {
+            ele = new VirtualDom(null, this.genKey());
             ele.textContent = txt;
         }
         return ele;
@@ -3769,6 +3728,7 @@ class Compiler {
     postHandleNode(node) {
         // 模块类判断
         if (ModuleFactory.hasClass(node.tagName)) {
+            console.log('module', node.tagName);
             node.addDirective(new Directive('module', node.tagName));
             node.tagName = 'div';
         }
@@ -5028,6 +4988,7 @@ class Module {
         if (ModuleFactory.getMain() === this) {
             return;
         }
+        this.doModuleEvent('beforeUnActive');
         //设置状态
         this.state = 1;
         //删除容器
@@ -5038,12 +4999,17 @@ class Module {
         this.keyNodeMap.clear();
         //清理缓存
         this.clearCache();
+        this.doModuleEvent('unActive');
         //处理子模块
         for (let id of this.children) {
             let m = ModuleFactory.get(id);
             if (m) {
                 m.unactive();
             }
+        }
+        //从html 卸载
+        if (this.container) {
+            Util.empty(this.container);
         }
     }
     /**
@@ -5392,8 +5358,9 @@ DirectiveElementManager.add([MODULE, FOR, IF, RECUR, ELSE, ELSEIF, ENDIF, SLOT])
             //共享当前dom的model给子模块
             if (dom.hasProp('useDomModel')) {
                 m.model = dom.model;
-                //绑定到子模块，共享update
+                //绑定model到子模块，共享update,watch方法
                 ModelManager.bindToModule(m.model, m);
+                dom.delProp('useDomModel');
             }
         }
         //保存到dom上，提升渲染性能

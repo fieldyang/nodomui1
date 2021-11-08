@@ -40,14 +40,15 @@
                     <h3>简单使用</h3>
                     <button e-click='addRow'>add</button>
                     <button e-click='change'>change</button>
+                    <!--
                     <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both'>
                         <ui-grid-col width='80' title='编号' field='id'/>
                         <ui-grid-col width='200' title='商品名' field='name' />
                         <ui-grid-col width='100' title='价格' field='price'/>
                         <ui-grid-col width='100' title='原价' field='oprice'/>
                         <ui-grid-col title='商品描述' field='desc' />
-                    </ui-grid>
-
+                    </ui-grid>-->
+                    <!--
                     <h3>网格线设置-行网格线</h3>
                     <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='rows'>
                         <ui-grid-col width='80' title='编号' field='id'/>
@@ -74,25 +75,24 @@
                         <ui-grid-col width='100' title='原价' field='oprice'/>
                         <ui-grid-col title='商品描述' field='desc' />
                     </ui-grid>
-                    
-                    <h3>列排序</h3>
+                    -->
+                    <!--<h3>列排序</h3>
                     <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' fixHead='true' checkbox='true' expand='true'>
                         <ui-grid-col width='80' title='编号' field='id' sortable='true'/>
                         <ui-grid-col width='200' title='商品名' field='name' />
                         <ui-grid-col width='100' title='价格' field='price' sortable='true'/>
                         <ui-grid-col width='100' title='原价' field='oprice' sortable='true'/>
                         <ui-grid-col title='商品描述' field='desc' />
-                    </ui-grid>
-
+                    </ui-grid>-->
+                    <!--
                     <h3>行可展开</h3>
                     <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' fixHead='true' checkbox='true' expand='true'>
-                        <ui-grid-col width='80' title='编号' field='id' sortable='true'/>
+                        <ui-grid-col width='80' title='编号' field='id' />
                         <ui-grid-col width='200' title='商品名' field='name' />
-                        <ui-grid-col width='100' title='价格' field='price' sortable='true'/>
-                        <ui-grid-col width='100' title='原价' field='oprice' sortable='true'/>
+                        <ui-grid-col width='100' title='价格' field='price' />
+                        <ui-grid-col width='100' title='原价' field='oprice'/>
                         <ui-grid-col title='商品描述' field='desc' />
                         
-                        <!--行展开内容-->
                         <slot name='expandrow'>
                             <ui-grid-expand useDomModel>
                                 <div><label>编号:</label><span>{{id}}</span></div>
@@ -101,6 +101,24 @@
                                 <div><label>商品名:</label><span>{{name}}</span></div>
                             </ui-grid-expand>
                         </slot>
+                    </ui-grid>-->
+                    <!--
+                    <h3>自定义列模版</h3>
+                    <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' fixHead='true' checkbox='true' expand='true'>
+                        <ui-grid-col width='80' title='编号' field='id' template="<span style='font-weight:bold;color:red'>{{id}}</span>" />
+                        <ui-grid-col width='200' title='商品名' field='name'/>
+                        <ui-grid-col width='100' title='价格' field='price' sortable='true' template="<span>¥{{price}}</span>" />
+                        <ui-grid-col width='100' title='原价' field='oprice' sortable='true' template="<span style='text-decoration: line-through;font-style:italic;color:red'>¥{{oprice}}</span>" />
+                        <ui-grid-col title='商品描述' field='desc' />
+                    </ui-grid>
+                    -->
+                    <h3>横向滚动</h3>
+                    <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' fixHead='true' checkbox='true' expand='true'>
+                        <ui-grid-col width='80' title='编号' field='id' template="<span style='font-weight:bold;color:red'>{{id}}</span>" />
+                        <ui-grid-col width='200' title='商品名' field='name'/>
+                        <ui-grid-col width='100' title='价格' field='price' sortable='true' template="<span>¥{{price}}</span>" />
+                        <ui-grid-col width='100' title='原价' field='oprice' sortable='true' template="<span style='text-decoration: line-through;font-style:italic;color:red'>¥{{oprice}}</span>" />
+                        <ui-grid-col width='500' title='商品描述' field='desc' />
                     </ui-grid>
                 </div>
             `
@@ -111,7 +129,7 @@
                     {"id":1,"name":"女款韩版休闲圆领宽松运动风条纹撞色短袖连衣裙","price":46,"oprice":399,"discount":0.12,"head":"imgs/1.jpg","desc":"女款韩版休闲圆领宽松运动风条纹撞色短袖连衣裙女款韩版休闲圆领宽松运动风条纹撞色短袖连衣裙女款韩版休闲圆领宽松运动风条纹撞色短袖连衣裙女款韩版休闲圆领宽松运动风条纹撞色短袖连衣裙"},
                     {"id":2,"name":"夏季新款韩版时尚气质蝴蝶结圆领收腰连衣裙夏连衣裙女裙子","price":44,"oprice":478,"discount":0.09,"head":"imgs/2.jpg","desc":"夏季新款韩版时尚气质蝴蝶结圆领收腰连衣裙夏连衣裙女裙子夏季新款韩版时尚气质蝴蝶结圆领收腰连衣裙夏连衣裙女裙子"},
                     {"id":3,"name":"夏新款显瘦仙女圆领直筒修身短袖女士时尚连衣裙","price":56,"oprice":499,"discount":0.12,"head":"imgs/3.jpg","desc":"夏新款显瘦仙女圆领直筒修身短袖女士时尚连衣裙夏新款显瘦仙女圆领直筒修身短袖女士时尚连衣裙夏新款显瘦仙女圆领直筒修身短袖女士时尚连衣裙夏新款显瘦仙女圆领直筒修身短袖女士时尚连衣裙"},
-                    {"id":4,"name":"2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子","price":46,"oprice":399,"discount":0.12,"head":"imgs/4.jpg","desc":"2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子"},
+                    // {"id":4,"name":"2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子","price":46,"oprice":399,"discount":0.12,"head":"imgs/4.jpg","desc":"2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子2020可甜可盐系穿搭复古衬衫格子拼接假两件连衣裙气质收腰裙子"},
                     // {"id":5,"name":"【春装连衣裙】个性纯色舒适显瘦气质复古百褶束腰设计款简约长裙","price":59,"oprice":668,"discount":0.09,"head":"imgs/5.jpg","desc":"【春装连衣裙】个性纯色舒适显瘦气质复古百褶束腰设计款简约长裙【春装连衣裙】个性纯色舒适显瘦气质复古百褶束腰设计款简约长裙【春装连衣裙】个性纯色舒适显瘦气质复古百褶束腰设计款简约长裙"},
                     // {"id":6,"name":"2020夏装新款气质红色露肩宽松休闲遮肉女士连衣裙","price":95,"oprice":519,"discount":0.18,"head":"imgs/6.jpg","desc":"2020夏装新款气质红色露肩宽松休闲遮肉女士连衣裙2020夏装新款气质红色露肩宽松休闲遮肉女士连衣裙2020夏装新款气质红色露肩宽松休闲遮肉女士连衣裙2020夏装新款气质红色露肩宽松休闲遮肉女士连衣裙"},
                     // {"id":7,"name":"【2020夏装新款】女时尚森系V领修身桔梗法式雪纺连衣裙","price":168,"oprice":798,"discount":0.22,"head":"imgs/7.jpg","desc":"【2020夏装新款】女时尚森系V领修身桔梗法式雪纺连衣裙【2020夏装新款】女时尚森系V领修身桔梗法式雪纺连衣裙【2020夏装新款】女时尚森系V领修身桔梗法式雪纺连衣裙【2020夏装新款】女时尚森系V领修身桔梗法式雪纺连衣裙"}

@@ -227,7 +227,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -519,7 +518,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -1454,7 +1452,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -1824,7 +1821,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -2136,7 +2132,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -2428,7 +2423,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -3249,7 +3243,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -3703,7 +3696,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -4032,7 +4024,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -4324,7 +4315,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -5283,7 +5273,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -5575,7 +5564,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -6177,7 +6165,8 @@ i {
   flex-direction: column;
   /*每行颜色交错*/ }
   .nd-grid .nd-grid-row {
-    width: 100%;
+    width: inherit;
+    box-sizing: border-box;
     overflow: visible;
     border-color: #2b3260;
     display: flex;
@@ -6187,9 +6176,9 @@ i {
     /*居中*/ }
     .nd-grid .nd-grid-row .nd-grid-row-item {
       display: flex;
+      box-sizing: border-box;
       align-items: center;
       padding: 10px;
-      box-sizing: border-box;
       text-overflow: ellipsis;
       vertical-align: middle;
       text-overflow: ellipsis;
@@ -6200,16 +6189,23 @@ i {
       padding: 0;
       cursor: pointer;
       display: flex;
-      justify-content: center;
-      align-items: center; }
+      justify-content: center; }
     .nd-grid .nd-grid-row .nd-grid-align-left {
       justify-content: flex-start; }
     .nd-grid .nd-grid-row .nd-grid-align-center {
       text-align: center; }
+  .nd-grid .nd-grid-bodyct {
+    height: inherit;
+    width: fit-content;
+    overflow: visible; }
   .nd-grid .nd-grid-body {
-    box-sizing: border-box; }
+    width: inherit; }
+    .nd-grid .nd-grid-body .nd-grid-rowct {
+      width: inherit;
+      box-sizing: border-box; }
   .nd-grid .nd-grid-head {
     box-sizing: border-box;
+    overflow: visible;
     background-color: #fff; }
     .nd-grid .nd-grid-head .nd-grid-row {
       font-weight: bold;
@@ -6225,6 +6221,13 @@ i {
         margin-left: 3px;
         /*升序箭头*/
         /*降序箭头*/ }
+        .nd-grid .nd-grid-head .nd-grid-row .nd-grid-sort > b {
+          background-color: white;
+          color: #333; }
+        .nd-grid .nd-grid-head .nd-grid-row .nd-grid-sort .nd-grid-sort-raise {
+          padding: 1px; }
+        .nd-grid .nd-grid-head .nd-grid-row .nd-grid-sort .nd-grid-sort-down {
+          padding: 1px; }
         .nd-grid .nd-grid-head .nd-grid-row .nd-grid-sort > b:hover {
           color: #f0f0f0;
           cursor: pointer; }
@@ -6232,6 +6235,7 @@ i {
     background-color: #212853;
     color: #fff; }
   .nd-grid .nd-grid-expand {
+    width: inherit;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -6243,66 +6247,31 @@ i {
     padding: 0;
     border: 0; }
 
-/*
-.nd-grid-head-row-line{
-	.nd-grid-row{
-		border-top: $nd-border;
-		border-bottom: $nd-border;
-	}
-	.nd-grid-expand{
-		border-bottom:$nd-border;
-	}
-}*/
 /*行网格线*/
-/*.nd-grid-row-line {
-	.nd-grid-row{
-		border-bottom: $nd-border;
-	}
-}*/
-/*.nd-grid-col-line {
-	border-left: $nd-border;
-	.nd-grid-row-item{
-		border-right: $nd-border;
-	}
-}*/
-/*
-.nd-grid-head-all-line{
-	.nd-grid-row{
-		border-left: $nd-border;
-		border-top:$nd-border;
-		border-bottom:$nd-border;
-	}
+.nd-grid-row-line, .nd-grid-all-line {
+  border-bottom: 1px solid #2b3260;
+  border-top: 1px solid #2b3260; }
+  .nd-grid-row-line .nd-grid-row, .nd-grid-all-line .nd-grid-row {
+    border-bottom: 1px solid #2b3260; }
+  .nd-grid-row-line .nd-grid-expand, .nd-grid-all-line .nd-grid-expand {
+    border-bottom: 1px solid #2b3260; }
 
-	.nd-grid-row-item{
-		border-right: $nd-border;
-	}
-}*/
-.nd-grid-row-line .nd-grid-row, .nd-grid-all-line .nd-grid-row {
-  border-bottom: 1px solid #2b3260; }
-.nd-grid-row-line .nd-grid-head, .nd-grid-all-line .nd-grid-head {
-  border-top: 1px solid #2b3260;
-  border-bottom: 1px solid #2b3260; }
-  .nd-grid-row-line .nd-grid-head .nd-grid-row, .nd-grid-all-line .nd-grid-head .nd-grid-row {
-    border-bottom: 0; }
-.nd-grid-row-line .nd-grid-expand, .nd-grid-all-line .nd-grid-expand {
-  border-bottom: 1px solid #2b3260; }
-
-.nd-grid-col-line .nd-grid-head, .nd-grid-all-line .nd-grid-head {
-  border-right: 1px solid #2b3260; }
-.nd-grid-col-line .nd-grid-body, .nd-grid-all-line .nd-grid-body {
-  border-right: 1px solid #2b3260; }
-.nd-grid-col-line .nd-grid-row-item, .nd-grid-all-line .nd-grid-row-item {
+/*列网格线*/
+.nd-grid-col-line, .nd-grid-all-line {
+  border-right: 1px solid #2b3260;
   border-left: 1px solid #2b3260; }
-.nd-grid-col-line .nd-grid-expand, .nd-grid-all-line .nd-grid-expand {
-  border-left: 1px solid #2b3260; }
+  .nd-grid-col-line .nd-grid-row-item, .nd-grid-all-line .nd-grid-row-item {
+    border-left: 1px solid #2b3260; }
+  .nd-grid-col-line .nd-grid-row .nd-grid-row-item:first-child, .nd-grid-all-line .nd-grid-row .nd-grid-row-item:first-child {
+    border-left: 0; }
 
+/*行列网格线*/
+/*固定头*/
 .nd-grid-fixhead {
   overflow: hidden; }
-  .nd-grid-fixhead .nd-grid-body {
-    overflow: auto; }
-  .nd-grid-fixhead .nd-grid-head {
+  .nd-grid-fixhead .nd-grid-bodyct {
     width: inherit;
-    padding-right: 10px; }
+    overflow: auto; }
 
 /**
  * 基础文件
@@ -6532,7 +6501,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -6865,7 +6833,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -7157,7 +7124,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -8000,7 +7966,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -8292,7 +8257,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -9113,7 +9077,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -9508,7 +9471,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -9800,7 +9762,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -10681,7 +10642,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -10973,7 +10933,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -11794,7 +11753,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -12198,7 +12156,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -12537,7 +12494,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -12867,7 +12823,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -13159,7 +13114,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -13995,7 +13949,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -14287,7 +14240,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -15178,7 +15130,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -15470,7 +15421,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -16336,7 +16286,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -16628,7 +16577,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -17492,7 +17440,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -17818,7 +17765,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -18124,7 +18070,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -18416,7 +18361,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -19280,7 +19224,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -19583,7 +19526,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -19875,7 +19817,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
@@ -20716,7 +20657,6 @@ label {
 
 /*global*/
 body {
-  margin: 0;
   font-size: 14px; }
 
 button,
