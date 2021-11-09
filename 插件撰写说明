@@ -1,0 +1,8 @@
+命名：
+UI 开头，插件名单词首字母大写，英文尽量准确，单词全写或缩写，如：UIGridCol，每个插件需要注册小写别名，如registModule(UIGridCol,'ui-grid-col');
+
+model 附加属性命名：
+附加属性以双下划线开始，如 __closed, __opened。
+
+
+

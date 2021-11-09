@@ -542,3 +542,15 @@ i{
 .nd-expand-open {
 	transform:  translate(1px,1px) rotate(90deg);
 }
+
+.nd-animationbox-normal{
+	transition: all ease 0.2s;
+}
+/*animation关闭状态*/
+.nd-animationbox-closed{
+	height:0;
+	overflow:hidden;
+	padding:0;
+	border:0;
+}
+

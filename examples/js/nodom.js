@@ -233,20 +233,22 @@ class ModuleFactory {
      * @returns     true/false
      */
     static hasClass(clazzName) {
-        return this.classes.has(clazzName);
+        return this.classes.has(clazzName.toLowerCase());
     }
     /**
      * 添加模块类
      * @param clazz     模块类
-     * @param name      注册别名
+     * @param alias     注册别名
      */
-    static addClass(clazz, name) {
-        if (this.classes.has(clazz.name)) {
+    static addClass(clazz, alias) {
+        //转换成小写
+        let name = clazz.name.toLowerCase();
+        if (this.classes.has(name)) {
             return;
         }
-        this.classes.set(clazz.name, clazz);
-        if (name) {
-            this.classes.set(name, clazz);
+        this.classes.set(name, clazz);
+        if (alias) {
+            this.classes.set(alias, clazz);
         }
     }
     /**
@@ -255,7 +257,7 @@ class ModuleFactory {
      * @param props         模块外部属性
      */
     static getInstance(clazz) {
-        let className = (typeof clazz === 'string') ? clazz : clazz.name;
+        let className = (typeof clazz === 'string') ? clazz : clazz.name.toLowerCase();
         let cls;
         // 初始化模块
         if (!this.classes.has(className) && typeof clazz === 'function') {
@@ -310,7 +312,7 @@ class VirtualDom {
      * @param tag       标签名
      * @param key       key
      */
-    constructor(tag, key) {
+    constructor(tag, key, module) {
         /**
          * 父虚拟dom
          */
@@ -326,7 +328,7 @@ class VirtualDom {
          * 对应的所有表达式的字段都属于dom model内
          */
         this.allModelField = true;
-        this.key = key || (Util.genId() + '');
+        this.key = key || ((module ? module.getDomKeyId() : Util.genId()) + '');
         if (tag) {
             this.tagName = tag;
         }
@@ -3505,29 +3507,39 @@ class Compiler {
         const propReg = /^[a-zA-Z_$][$-\w]*?\s*?=?$/;
         //pre标签标志
         let isPreTag = false;
+        //template计数器
+        let templateCount = 0;
+        //模版开始index
+        let templateStartIndex = 0;
+        //当前标签名
+        let tagName;
         //当前dom节点
         let dom;
         //正则式匹配结果
-        let r;
-        while ((r = regTag.exec(srcStr)) !== null) {
-            let re = r[0];
+        let result;
+        while ((result = regTag.exec(srcStr)) !== null) {
+            let re = result[0];
             if (re[0] === '<') { //标签
-                //处理文本
-                let txt = this.handleText(srcStr.substring(lastIndex, r.index), isPreTag);
-                if (txt) {
-                    domArr.push(txt);
-                    closedTag.push(false);
+                if (templateCount === 0) { //模版内部不编译
+                    //处理文本
+                    let txt = this.handleText(srcStr.substring(lastIndex, result.index), isPreTag);
+                    if (txt) {
+                        domArr.push(txt);
+                        closedTag.push(false);
+                    }
                 }
                 if (re[1] === '/') { //标签结束
                     finishTag(re);
                 }
                 else { //标签开始
-                    let tagName = re.substr(1).trim();
-                    isPreTag = (tagName.toLowerCase() === 'pre');
-                    //新建dom节点
-                    dom = new VirtualDom(tagName, this.genKey());
-                    domArr.push(dom);
-                    closedTag.push(false);
+                    tagName = re.substr(1).trim().toLowerCase();
+                    if (templateCount === 0) { //非模版中
+                        isPreTag = (tagName === 'pre');
+                        //新建dom节点
+                        dom = new VirtualDom(tagName, this.genKey());
+                        domArr.push(dom);
+                        closedTag.push(false);
+                    }
                 }
             }
             else if (re === '>') { //标签头结束
@@ -3537,6 +3549,10 @@ class Compiler {
                 finishTag();
             }
             else if (dom) { //属性
+                //当前在模版内，不处理属性
+                if (templateCount > 0) {
+                    continue;
+                }
                 if (propReg.test(re)) {
                     if (propName) { //propName=无值 情况，当无值处理
                         handleProp();
@@ -3562,21 +3578,32 @@ class Compiler {
         function finishTag(ftag) {
             if (ftag) {
                 let tag = ftag.substring(2, ftag.length - 1).toLowerCase();
-                let finded = false;
-                //反向查找
-                for (let i = domArr.length - 1; i >= 0; i--) {
-                    if (!closedTag[i] && domArr[i].tagName && domArr[i].tagName.toLowerCase() === tag) {
-                        domArr[i].children = domArr.slice(i + 1);
-                        //删除后续节点
-                        domArr.splice(i + 1);
-                        //标注该节点已闭合
-                        closedTag.splice(i + 1);
-                        finded = true;
-                        break;
+                if (templateCount > 0) {
+                    if (tag !== 'template') { //非template不处理
+                        return;
+                    }
+                    if (--templateCount === 0) { //template结束
+                        let d1 = domArr[domArr.length - 1];
+                        d1.setProp('template', srcStr.substring(templateStartIndex, result.index).trim());
                     }
                 }
-                if (!finded) {
-                    throw new NError('wrongTemplate');
+                else { //普通节点
+                    let finded = false;
+                    //反向查找
+                    for (let i = domArr.length - 1; i >= 0; i--) {
+                        if (!closedTag[i] && domArr[i].tagName === tag) {
+                            domArr[i].children = domArr.slice(i + 1);
+                            //删除后续节点
+                            domArr.splice(i + 1);
+                            //标注该节点已闭合
+                            closedTag.splice(i + 1);
+                            finded = true;
+                            break;
+                        }
+                    }
+                    if (!finded) {
+                        throw new NError('wrongTemplate');
+                    }
                 }
             }
             //设置标签关闭
@@ -3594,6 +3621,13 @@ class Compiler {
          * 标签头结束
          */
         function finishTagHead() {
+            if (tagName === 'template') { //模版标签
+                if (templateCount === 0) { //模版最开始，需要记录模版开始位置
+                    templateStartIndex = regTag.lastIndex;
+                }
+                //嵌套template中的计数
+                templateCount++;
+            }
             if (dom) {
                 lastIndex = regTag.lastIndex;
             }
@@ -3644,6 +3678,11 @@ class Compiler {
         let slotCt;
         for (let j = 0; j < dom.children.length; j++) {
             let c = dom.children[j];
+            if (c.tagName === 'template') { //模版作为模块的template属性
+                dom.setProp('template', c.getProp('template'));
+                //template节点不再需要
+                dom.children.splice(j--, 1);
+            }
             if (c.hasDirective('slot')) { //带slot的不处理
                 continue;
             }
@@ -3728,7 +3767,6 @@ class Compiler {
     postHandleNode(node) {
         // 模块类判断
         if (ModuleFactory.hasClass(node.tagName)) {
-            console.log('module', node.tagName);
             node.addDirective(new Directive('module', node.tagName));
             node.tagName = 'div';
         }
@@ -3752,12 +3790,11 @@ class Compiler {
         return str;
     }
     /**
-     * 产生可以
-     * @returns     key
+     * 产生dom key
+     * @returns   dom key
      */
     genKey() {
-        // return this.module.id + '_' + this.elementId++;
-        return this.elementId++ + '';
+        return this.module.getDomKeyId() + '';
     }
 }
 
@@ -4886,7 +4923,11 @@ class Module {
         }
         //执行前置方法
         this.doRenderOps(0);
-        this.doModuleEvent('onBeforeRender');
+        //渲染前事件返回true，则不进行渲染
+        if (this.doModuleEvent('onBeforeRender')) {
+            this.dontAddToRender = false;
+            return;
+        }
         if (!this.renderTree) {
             this.doFirstRender();
         }
@@ -5041,9 +5082,11 @@ class Module {
     /**
      * 执行模块事件
      * @param eventName 	事件名
+     * @returns             执行结果，各事件返回值如下：
+     *                          onBeforeRender：如果为true，表示不进行渲染
      */
     doModuleEvent(eventName) {
-        this.invokeMethod(eventName, this.model);
+        return this.invokeMethod(eventName, this.model);
     }
     /**
      * 获取模块方法
@@ -5166,6 +5209,7 @@ class Module {
      * 编译
      */
     compile() {
+        this.domKeyId = 0;
         //清除缓存
         this.clearCache();
         const str = this.template(this.props);
@@ -5208,6 +5252,13 @@ class Module {
      */
     saveNode(key, node) {
         this.keyNodeMap.set(key, node);
+    }
+    /**
+     * 获取dom key id
+     * @returns     key id
+     */
+    getDomKeyId() {
+        return ++this.domKeyId;
     }
 }
 
@@ -5413,6 +5464,8 @@ DirectiveElementManager.add([MODULE, FOR, IF, RECUR, ELSE, ELSEIF, ENDIF, SLOT])
         const parent = dom.parent;
         //禁用该指令
         this.disabled = true;
+        //避免在渲染时对src设置了model，此处需要删除
+        delete src.model;
         for (let i = 0; i < rows.length; i++) {
             if (idxName) {
                 rows[i][idxName] = i;

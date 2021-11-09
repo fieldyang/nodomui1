@@ -290,6 +290,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -580,6 +590,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -1515,6 +1535,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**按钮**/
 button,
 .nd-btn,
@@ -1884,6 +1914,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /********** accordion ***********/
 .nd-accordion {
   background-color: #393D49;
@@ -1901,8 +1941,6 @@ i {
     font-size: 12px;
     display: block;
     background-color: rgba(0, 0, 0, 0.2); }
-  .nd-accordion .nd-accordion-item .nd-accordion-hide {
-    display: none; }
 
 /**
  * 基础文件
@@ -2195,6 +2233,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -2485,6 +2533,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -3306,6 +3364,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**按钮**/
 button,
 .nd-btn,
@@ -3759,6 +3827,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /*dialog*/
 .nd-dialog {
   position: fixed;
@@ -4087,6 +4165,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -4377,6 +4465,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -5336,6 +5434,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -5626,6 +5734,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -6239,13 +6357,7 @@ i {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    box-sizing: border-box;
-    transition: all ease 0.2s; }
-  .nd-grid .nd-grid-expand-hide {
-    height: 0;
-    overflow: hidden;
-    padding: 0;
-    border: 0; }
+    box-sizing: border-box; }
 
 /*行网格线*/
 .nd-grid-row-line, .nd-grid-all-line {
@@ -6255,6 +6367,8 @@ i {
     border-bottom: 1px solid #2b3260; }
   .nd-grid-row-line .nd-grid-expand, .nd-grid-all-line .nd-grid-expand {
     border-bottom: 1px solid #2b3260; }
+  .nd-grid-row-line .nd-grid-expand-hide, .nd-grid-all-line .nd-grid-expand-hide {
+    border: 0; }
 
 /*列网格线*/
 .nd-grid-col-line, .nd-grid-all-line {
@@ -6563,6 +6677,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 /******* layout *******/
 .nd-layout {
@@ -6896,6 +7020,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -7186,6 +7320,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -8029,6 +8173,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -8319,6 +8473,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -9140,6 +9304,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**按钮**/
 button,
 .nd-btn,
@@ -9534,6 +9708,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -9824,6 +10008,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -10705,6 +10899,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -10995,6 +11199,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -11816,6 +12030,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**按钮**/
 button,
 .nd-btn,
@@ -12219,6 +12443,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /* panel */
 .nd-panel {
   border-radius: 5px;
@@ -12557,6 +12791,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 .nd-progress {
   position: relative;
   height: 6px;
@@ -12886,6 +13130,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -13176,6 +13430,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -14012,6 +14276,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -14302,6 +14576,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -15193,6 +15477,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -15483,6 +15777,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -16349,6 +16653,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -16639,6 +16953,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -17503,6 +17827,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /********** tree ***********/
 .nd-tree {
   overflow: auto;
@@ -17828,6 +18162,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /* toolbar */
 .nd-toolbar {
   display: inline-flex;
@@ -18133,6 +18477,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -18423,6 +18777,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -19287,6 +19651,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /* button group*/
 .nd-buttongroup {
   padding: 10px;
@@ -19589,6 +19963,16 @@ i {
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
 
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
+
 /**
  * 基础文件
  * 包含所有变量定义
@@ -19879,6 +20263,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 @font-face {
   font-family: "nd-iconfont";
@@ -20719,6 +21113,16 @@ i {
 
 .nd-expand-open {
   transform: translate(1px, 1px) rotate(90deg); }
+
+.nd-animationbox-normal, .nd-accordion .nd-accordion-item .nd-accordion-content, .nd-grid .nd-grid-expand {
+  transition: all ease 0.2s; }
+
+/*animation关闭状态*/
+.nd-animationbox-closed, .nd-accordion .nd-accordion-item .nd-accordion-hide, .nd-grid .nd-grid-expand-hide {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0; }
 
 .nd-carousel {
   position: relative;

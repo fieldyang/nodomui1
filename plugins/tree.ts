@@ -3,11 +3,10 @@ import { registModule, Model, Module ,VirtualDom} from "../../nodom3.3";
 
 /**
  * 树形插件
+ * 数据项
+ * treeData         树结构数据
+ * treeValue        树check数组存放值，传入时，必须在父模块定义数组，对应valueField，如[1,2,3] 
  * 参数说明
- * dataName：       树依赖数据项名，格式为嵌套数组，数据通过props传递，与props传递的数据项一致
- * valueName：      值属性名，如果需要树产生选中节点值，通过props传递，与props传递的数据项一致
- * openField：      树节点展开数据项名，默认$isOpen
- * checkField：     选中数据项名，如果配置，则显示checkbox，默认为$checked
  * displayField：   数据项中用于显示的属性名
  * valueField：     数据项中用于取值的属性名
  * icons：          树节点图标，依次为为非叶子节点关闭状态，打开状态，叶子节点，如果只有两个，则表示非叶子节点和叶子节点，如果1个，则表示非叶子节点
@@ -17,17 +16,17 @@ export class UITree extends Module{
     /**
      * 数据项名
      */
-    dataName:string;
+    // dataName:string;
 
     /**
      * 打开状态字段名
      */
-    openName:string;
+    // openName:string;
 
     /**
      * 选中字段名
      */
-    checkName:string;
+    // checkName:string;
 
     /**
      * 值字段名
@@ -47,7 +46,7 @@ export class UITree extends Module{
     /**
      * 值字段
      */
-    field:string;
+    // field:string;
 
     /**
      * 节点点击事件名
@@ -60,33 +59,30 @@ export class UITree extends Module{
      * @returns         模版字符串
      */
     template(props?:any):string{
-        this.dataName = props.dataName;
+        // this.dataName = props.dataName;
         this.displayField = props.displayField;
         this.valueField = props.valueField;
-        this.field = props.valueName;
-        let openName = props.openField || '$isOpen';
-        this.openName = openName;
-        let checkName = props.checkField || '$checked';
-        this.checkName = checkName;
+        // this.field = props.valueName;
         this.itemClickEventName = props.itemClick;
         this.icons = props.icons?props.icons.split(',').map(item=>item.trim()):undefined;
-        
+        let nodeTmp = props.template || `{{${props.displayField}}}`;
+        let needCheck = (props.checkbox === 'true')
         return `
-            <div class='nd-tree' x-model=${props.dataName}>
+            <div class='nd-tree' x-model='treeData'>
                 <for cond={{children}} class='nd-tree-nodect' value={{${props.valueField}}}>
 				    <div class='nd-tree-node'>
-                        <b class={{genArrowCls(!children||children.length===0,${openName})}} e-click='expandClose'></b>
-                        ${props.icons?"<b class={{genFolderCls(!children||children.length===0," + openName + ")}}></b>":""}
-                        ${checkName?"<b class={{genCheckCls($checked)}} e-click='checkItem'></b>":""}
-                        <span e-click='clickItem'>{{${props.displayField}}}</span>
+                        <b class={{genArrowCls(!children||children.length===0,__opened)}} e-click='expandClose'></b>
+                        ${props.icons?"<b class={{genFolderCls(!children||children.length===0,__opened)}}></b>":""}
+                        ${needCheck?"<b class={{genCheckCls(__checked)}} e-click='checkItem'></b>":""}
+                        <span e-click='clickItem'>${nodeTmp}</span>
                     </div>
-                    <recur cond='children' class={{genSubCls(${openName})}}>
+                    <recur cond='children' class={{genSubCls(__opened)}}>
                         <for cond={{children}} class='nd-tree-nodect'  value={{${props.valueField}}}>
                             <div class='nd-tree-node'>
-                                <b class={{genArrowCls(!children||children.length===0,${openName})}} e-click='expandClose'></b>
-                                ${props.icons?"<b class={{genFolderCls(!children||children.length===0," + openName + ")}}></b>":""}
-                                ${checkName?"<b class={{genCheckCls(" + checkName +")}} e-click='checkItem'></b>":""}
-                                <span e-click='clickItem'>{{${props.displayField}}}</span>
+                                <b class={{genArrowCls(!children||children.length===0,__opened)}} e-click='expandClose'></b>
+                                ${props.icons?"<b class={{genFolderCls(!children||children.length===0,__opened)}}></b>":""}
+                                ${needCheck?"<b class={{genCheckCls(__checked)}} e-click='checkItem'></b>":""}
+                                <span e-click='clickItem'>${nodeTmp}</span>
                             </div>
                             <recur ref />
                         </for>                
@@ -191,7 +187,7 @@ export class UITree extends Module{
      * @param e         event对象
      */
     expandClose(model,dom,eobj,e){
-        model[this.openName] = !model[this.openName];
+        model['__opened'] = !model['__opened'];
     }
     
     /**
@@ -210,14 +206,11 @@ export class UITree extends Module{
      * @param model     树对应model 
      */
     onBeforeFirstRender(model){
-        //用$set方法，实现model模块绑定
-        model.$set(this.dataName,this.props.$data[this.dataName],this);
-        model[this.field] = this.props.$data[this.field];
-        if(this.field){
-            model.$watch(this.field,()=>{
-                this.setValue(model[this.field]);
+        if(model.treeValue && model.treeValue.length>0){
+            model.$watch('treeValue',()=>{
+                this.setValue(model['treeValue']);
             })
-            this.setValue(model[this.field]);
+            this.setValue(model['treeValue']);
         }
     }
 
@@ -231,14 +224,14 @@ export class UITree extends Module{
         const me = this;
         let model = dom.model;
         if(state === undefined){
-            state = model[this.checkName] || 0;
+            state = model['__checked'] || 0;
             if(state === 0 || state === 2){ //未选中或部分选中，点击后选中
                 state = 1;
             }else{
                 state = 0;
             }
         }
-        model[this.checkName] = state;
+        model['__checked'] = state;
         this.changeValue(model);
         this.handleSubCheck(model,state);
         this.leafToRoot();
@@ -255,7 +248,7 @@ export class UITree extends Module{
            return;
        }
        for(let r of rows){
-           r[this.checkName] = state;
+           r['__checked'] = state;
            this.changeValue(r);
            this.handleSubCheck(r,state);
        }
@@ -267,10 +260,12 @@ export class UITree extends Module{
      */
     public setValue(value){
         const me = this;
-        if(!value || !this.field || this.valueField === '' ){
+        if(!value || this.valueField === '' || !this.model['treeData'] || !this.model['treeData'].children){
             return;
         }
-        setNode(this.model[this.dataName]);
+        for(let m of this.model['treeData'].children){
+            setNode(m);
+        }
         
         //反向处理
         this.leafToRoot();
@@ -279,12 +274,10 @@ export class UITree extends Module{
          * @param m     model
          */
         function setNode(m){
-            let ind = -1;
-            if((ind=value.indexOf(m[me.valueField])) !== -1){
-                m[me.checkName] = 1;
-                //处理子节点
-                me.handleSubCheck(me.model,1);
-                //移除该值
+            if(value.indexOf(m[me.valueField]) !== -1){
+                m['__checked'] = 1;
+                //处理子树
+                me.handleSubCheck(m,1);
             }else if(m.children){ //处理子节点
                 for(let m1 of m.children){
                     setNode(m1);
@@ -299,12 +292,11 @@ export class UITree extends Module{
      * @returns 
      */
     private changeValue(model){
-        if(!this.field || !this.valueField){
+        if(!this.valueField || !this.model['treeValue']){
             return;
         }
-        let state = model[this.checkName];
-        let m1 = this.model;
-        let value = this.model[this.field];
+        let state = model['__checked'];
+        let value = this.model['treeValue'];
         if(!value){
             value = [];
         }
@@ -328,7 +320,8 @@ export class UITree extends Module{
         const me = this;
         let modelList;
         let modelMap;
-        let pmodel = this.model[this.dataName];
+        let pmodel = this.model['treeData'];
+        
         if (!pmodel || !pmodel.children) {
             return;
         }
@@ -340,7 +333,7 @@ export class UITree extends Module{
         }
 
         function handleOne(model) {
-            if(modelList.length>0 && model[me.checkName] === 1){
+            if(modelList.length>0 && model['__checked'] === 1){
                 let last = modelList[modelList.length-1];
                 modelMap.get(last).cnt++;
             }
@@ -357,11 +350,11 @@ export class UITree extends Module{
                 modelList.pop();
                 let cfg = modelMap.get(model);
                 if(cfg.need === cfg.cnt){   //子节点全选中
-                    model[me.checkName] = 1;
+                    model['__checked'] = 1;
                 }else if(cfg.cnt === 0){    //子节点全未选中
-                    model[me.checkName] = 0;
+                    model['__checked'] = 0;
                 }else{                      //部分选中
-                    model[me.checkName] = 2;
+                    model['__checked'] = 2;
                 }
                 me.changeValue(model);
             }

@@ -19,10 +19,11 @@
 			font-size:$nd-fontsmall;
 			display: block;
 			background-color: rgba($nd-color-realBlack,.2);
+			@extend .nd-animationbox-normal;
 		}
 
 		.nd-accordion-hide {
-			display: none;
+			@extend .nd-animationbox-closed;
 		}
 	}
 }

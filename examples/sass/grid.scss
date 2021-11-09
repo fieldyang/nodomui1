@@ -123,15 +123,11 @@
 		flex-direction: column;
 		padding: $nd-padding;
 		box-sizing: border-box;
-		transition: all ease 0.2s;
+		@extend .nd-animationbox-normal;
 	}
 
 	.nd-grid-expand-hide{
-		// display:none;
-		height:0;
-		overflow:hidden;
-		padding:0;
-		border:0;
+		@extend .nd-animationbox-closed;
 	}
 }
 
@@ -144,19 +140,13 @@
 		border-bottom: $nd-border;
 	}
 
-	// .nd-grid-body{
-	// 	.nd-grid-row:last-child{
-	// 		border-bottom:0;
-	// 	}
-	// }
-
 	.nd-grid-expand{
 		border-bottom:$nd-border;
 	}
 
-	// .nd-grid-expand:last-child{
-	// 	border-bottom:$nd-border;
-	// }
+	.nd-grid-expand-hide{
+		border:0;
+	}
 }
 
 /*列网格线*/
@@ -187,11 +177,5 @@
 	.nd-grid-bodyct{
 		width:inherit;
 		overflow:auto;
-		// overflow-y:visible;
-		// overflow-x:hidden;
-	}
-
-	.nd-grid-head{
-		// padding-right:$nd-scrollbar-width;
 	}
 }

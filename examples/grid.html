@@ -37,9 +37,9 @@
         template(){
             return `
                 <div>
-                    <h3>简单使用</h3>
                     <button e-click='addRow'>add</button>
                     <button e-click='change'>change</button>
+                    <h3>简单使用</h3>
                     <!--
                     <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both'>
                         <ui-grid-col width='80' title='编号' field='id'/>
@@ -84,34 +84,51 @@
                         <ui-grid-col width='100' title='原价' field='oprice' sortable='true'/>
                         <ui-grid-col title='商品描述' field='desc' />
                     </ui-grid>-->
-                    <!--
+                    
                     <h3>行可展开</h3>
-                    <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' fixHead='true' checkbox='true' expand='true'>
+                    <ui-grid $gridData={{rows}}  gridLine='both' fixHead='true' checkbox='true' expand='true'>
                         <ui-grid-col width='80' title='编号' field='id' />
                         <ui-grid-col width='200' title='商品名' field='name' />
                         <ui-grid-col width='100' title='价格' field='price' />
                         <ui-grid-col width='100' title='原价' field='oprice'/>
                         <ui-grid-col title='商品描述' field='desc' />
-                        
-                        <slot name='expandrow'>
-                            <ui-grid-expand useDomModel>
-                                <div><label>编号:</label><span>{{id}}</span></div>
-                                <div><label>价格:</label><span>{{price}}</span></div>
-                                <div><label>原价:</label><span>{{oprice}}</span></div>
-                                <div><label>商品名:</label><span>{{name}}</span></div>
-                            </ui-grid-expand>
-                        </slot>
-                    </ui-grid>-->
+                        <!--展开行-->
+                        <ui-grid-expand>
+                            <template>
+                                <div>
+                                    <div><label>编号:</label><span>{{id}}</span></div>
+                                    <div><label>价格:</label><span>{{price}}</span></div>
+                                    <div><label>原价:</label><span>{{oprice}}</span></div>
+                                    <div><label>商品名:</label><span>{{name}}</span></div>
+                                </div>
+                            </template>
+                        </ui-grid-expand>
+                    </ui-grid>
+
                     <!--
                     <h3>自定义列模版</h3>
-                    <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' fixHead='true' checkbox='true' expand='true'>
-                        <ui-grid-col width='80' title='编号' field='id' template="<span style='font-weight:bold;color:red'>{{id}}</span>" />
+                    <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' checkbox='true' expand='true'>
+                        <ui-grid-col width='80' title='编号' field='id'>
+                            <template>
+                                <span style='font-weight:bold;color:red'>{{id}}</span>
+                            </template>
+                        </ui-grid-col>
                         <ui-grid-col width='200' title='商品名' field='name'/>
-                        <ui-grid-col width='100' title='价格' field='price' sortable='true' template="<span>¥{{price}}</span>" />
-                        <ui-grid-col width='100' title='原价' field='oprice' sortable='true' template="<span style='text-decoration: line-through;font-style:italic;color:red'>¥{{oprice}}</span>" />
+                        <ui-grid-col width='100' title='价格' field='price' sortable='true' >
+                            <template>
+                                <span>¥{{price}}</span>
+                            </template>
+                        </ui-grid-col>
+                        <ui-grid-col width='100' title='原价' field='oprice' sortable='true'>
+                            <template>
+                                <span style='text-decoration: line-through;font-style:italic;color:red'>¥{{oprice}}</span>
+                            </template>
+                        </ui-grid-col>
                         <ui-grid-col title='商品描述' field='desc' />
                     </ui-grid>
                     -->
+
+                    <!--
                     <h3>横向滚动</h3>
                     <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' fixHead='true' checkbox='true' expand='true'>
                         <ui-grid-col width='80' title='编号' field='id' template="<span style='font-weight:bold;color:red'>{{id}}</span>" />
@@ -120,6 +137,16 @@
                         <ui-grid-col width='100' title='原价' field='oprice' sortable='true' template="<span style='text-decoration: line-through;font-style:italic;color:red'>¥{{oprice}}</span>" />
                         <ui-grid-col width='500' title='商品描述' field='desc' />
                     </ui-grid>
+                    -->
+                    <!--
+                    <h3>固定列</h3>
+                    <ui-grid $gridData={{rows}} style='height:300px;'  gridLine='both' fixHead='true' checkbox='true' expand='true'>
+                        <ui-grid-col width='80' title='编号' field='id' template="<span style='font-weight:bold;color:red'>{{id}}</span>" />
+                        <ui-grid-col width='200' title='商品名' field='name'/>
+                        <ui-grid-col width='100' title='价格' field='price' sortable='true' template="<span>¥{{price}}</span>" />
+                        <ui-grid-col width='100' title='原价' field='oprice' sortable='true' template="<span style='text-decoration: line-through;font-style:italic;color:red'>¥{{oprice}}</span>" />
+                        <ui-grid-col width='500' title='商品描述' field='desc' />
+                    </ui-grid>-->
                 </div>
             `
         }

@@ -18,70 +18,56 @@
 			template(){
 				return  `
 					<div>
+						<!--
 						<h3>基本使用</h3>
 						<ui-accordion>
 							<ui-accordion-item title='第1层'>
-								<div>
-									由html element全面改成虚拟dom，即由json数据对象方式管理模块dom树，同时强化虚拟dom操作
-								</div>
+								由html element全面改成虚拟dom，即由json数据对象方式管理模块dom树，同时强化虚拟dom操作
 							</ui-accordion-item>
 							<ui-accordion-item title='第2层' open=true>
-								<div>
-									增加了IoC模式，模块支持即插即用，支持模块单例和非单例模式，灵活掌控资源消耗；
-								</div>
+								增加了IoC模式，模块支持即插即用，支持模块单例和非单例模式，灵活掌控资源消耗；
 							</ui-accordion-item>
-
 							<ui-accordion-item title='第3层'>
-								<div>
-									改变插件接入方式，支持自定义element tag接入和对象化接入；
-								</div>
+								改变插件接入方式，支持自定义element tag接入和对象化接入；
 							</ui-accordion-item>
 
 							<ui-accordion-item title='第4层'>
-								<div>
-									提供大量插件，便于快速搭建应用，插件持续增加。模型为数据模型，是数据的辅助对象，NoDom中，每个数据对象都对应一个model，模块基于model进行渲染，model的变化会导致模块的增量渲染，通常是多个model变化，进行一次渲染）
-								</div>
+								提供大量插件，便于快速搭建应用，插件持续增加。模型为数据模型，是数据的辅助对象，NoDom中，每个数据对象都对应一个model，模块基于model进行渲染，model的变化会导致模块的增量渲染，通常是多个model变化，进行一次渲染）
 							</ui-accordion-item>
 						</ui-accordion>
 
 						<h3>手风琴使用</h3>
-						<ui-accordion single=true>
+						<ui-accordion single='true'>
 							<ui-accordion-item title='第1层'>
-								<div>
-									由html element全面改成虚拟dom，即由json数据对象方式管理模块dom树，同时强化虚拟dom操作
-								</div>
+								由html element全面改成虚拟dom，即由json数据对象方式管理模块dom树，同时强化虚拟dom操作
 							</ui-accordion-item>
 							<ui-accordion-item title='第2层'>
-								<div>
-									增加了IoC模式，模块支持即插即用，支持模块单例和非单例模式，灵活掌控资源消耗；
-								</div>
+								增加了IoC模式，模块支持即插即用，支持模块单例和非单例模式，灵活掌控资源消耗；
 							</ui-accordion-item>
 
 							<ui-accordion-item title='第3层'  open=true>
-								<div>
-									改变插件接入方式，支持自定义element tag接入和对象化接入；
-								</div>
+								改变插件接入方式，支持自定义element tag接入和对象化接入；
 							</ui-accordion-item>
 
 							<ui-accordion-item title='第4层'>
-								<div>
-									提供大量插件，便于快速搭建应用，插件持续增加。模型为数据模型，是数据的辅助对象，NoDom中，每个数据对象都对应一个model，模块基于model进行渲染，model的变化会导致模块的增量渲染，通常是多个model变化，进行一次渲染）
-								</div>
+								提供大量插件，便于快速搭建应用，插件持续增加。模型为数据模型，是数据的辅助对象，NoDom中，每个数据对象都对应一个model，模块基于model进行渲染，model的变化会导致模块的增量渲染，通常是多个model变化，进行一次渲染）
 							</ui-accordion-item>
 						</ui-accordion>
-						
+						-->
 						<h3>repeat嵌套</h3>
-						<ui-accordion single=true>
-							<div x-repeat={{levels}}>
-								<ui-accordion-item title={{title}}>
-									<ol>
-										<li x-repeat={{rows}}>
-											<b class={{'nd-icon-' + icon}}></b>
-											{{name}}
-										</li>
-									</ol>
+						<ui-accordion single='true'>
+							<for cond={{levels}}>
+								<ui-accordion-item title={{title}} useDomModel>
+									
+										<ol>
+											<li x-repeat={{rows}}>
+												<b class={{'nd-icon-' + icon}}></b>
+												{{name}}
+											</li>
+										</ol>
+									
 								</ui-accordion-item>
-							</div>
+							</for>
 						</ui-accordion>
 					</div>
 				`;

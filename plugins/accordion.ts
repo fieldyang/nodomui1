@@ -27,7 +27,14 @@ registModule(UIAccordion,'ui-accordion');
  * open: true/false,是否展开
  */
 export class UIAccordionItem extends Module{
+    /**
+     * 打开状态
+     */
     private open:boolean;
+
+    /**
+     * 显示单个
+     */
     private showSingle:boolean;
 
     template(props?:any):string{
@@ -40,9 +47,10 @@ export class UIAccordionItem extends Module{
                 </div>
                 <div class='nd-accordion-content' class={{$open?'nd-accordion-content':'nd-accordion-content  nd-accordion-hide'}}>
                     <slot></slot>
+                    ${props.template||''}
                 </div>
             </div>
-        `
+        `;
     }
 
     onBeforeFirstRender(model){
